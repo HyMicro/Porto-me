@@ -109,18 +109,6 @@ export function ContactSection() {
       />
 
       <div className="max-w-3xl mx-auto text-center flex flex-col items-center relative z-10 pointer-events-auto">
-        {/* Top Meta Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-xl mb-6 text-[11px] font-mono tracking-widest text-zinc-300 uppercase shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]"
-        >
-          <MessageSquareCode size={13} className="text-white" />
-          <span>INITIATE COLLABORATION</span>
-        </motion.div>
-
         {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

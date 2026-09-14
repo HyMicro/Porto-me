@@ -141,10 +141,11 @@ export function HeroSection() {
       <div className="relative z-20 pt-20 sm:pt-24 flex-1 flex flex-col justify-between">
         <Hero12
           title="AHYAD IZZUDDIN SYUHAIBA"
-          established="Est. 2024"
-          description="A multidisciplinary digital creator bridging Unreal Engine 5 gameplay programming, systems architecture (C++/Blueprint), and UI/UX design."
+          established="Est. 2026"
+          description="Personal portfolio showcasing my experience in web development, Unreal Engine 5 game development, UI/UX design, and graphic design."
           animation="subtle"
           variant="standard"
+          titleClassName="font-neuton"
           primaryCTA={{
             ctaEnabled: true,
             text: "Initiate Contact",
@@ -154,11 +155,8 @@ export function HeroSection() {
         />
 
         {/* Interactive Electric Gaze Engine Preset Selector Bar */}
-        <div className="relative z-30 max-w-6xl mx-auto px-6 sm:px-10 pb-10 w-full">
-          <div className="flex flex-wrap items-center gap-2 bg-black/60 backdrop-blur-xl p-3 sm:p-3.5 rounded-2xl border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
-            <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest mr-1 flex items-center gap-1.5 font-bold">
-              <Sliders size={13} /> Electric Gaze Engine:
-            </span>
+        <div className="relative z-30 max-w-6xl mx-auto px-6 sm:px-10 pb-10 w-full flex justify-center">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             {Object.entries(PRESETS).map(([key, item]) => (
               <button
                 key={key}
@@ -166,9 +164,9 @@ export function HeroSection() {
                   setActivePreset(key);
                   setShowOriginal(false);
                 }}
-                className={`px-3 py-1 text-[11px] font-mono rounded-full border transition-all duration-300 cursor-pointer ${activePreset === key && !showOriginal
-                  ? "bg-cyan-950/90 border-cyan-400 text-cyan-300 shadow-[0_0_16px_rgba(60,166,255,0.4)] font-semibold"
-                  : "bg-zinc-900/80 border-zinc-700/80 text-zinc-400 hover:text-white hover:border-zinc-500"
+                className={`px-3.5 py-1.5 text-[11px] font-mono rounded-full border transition-all duration-300 cursor-pointer ${activePreset === key && !showOriginal
+                    ? "bg-zinc-900 border-white text-white shadow-[0_0_16px_rgba(255,255,255,0.4)] font-semibold"
+                    : "bg-zinc-900/80 border-zinc-700/80 text-zinc-400 hover:text-white hover:border-zinc-500"
                   }`}
               >
                 {item.label}
@@ -177,7 +175,7 @@ export function HeroSection() {
 
             <button
               onClick={() => setShowOriginal(!showOriginal)}
-              className={`px-3 py-1 text-[11px] font-mono rounded-full border flex items-center gap-1.5 transition-all duration-300 cursor-pointer ${showOriginal
+              className={`px-3.5 py-1.5 text-[11px] font-mono rounded-full border flex items-center gap-1.5 transition-all duration-300 cursor-pointer ${showOriginal
                 ? "bg-white text-black border-white font-bold shadow-[0_0_16px_rgba(255,255,255,0.4)]"
                 : "bg-zinc-900/80 border-zinc-700/80 text-zinc-400 hover:text-white hover:border-zinc-500"
                 }`}

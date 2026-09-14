@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Neuton } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+
+const neuton = Neuton({
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+  variable: "--font-neuton",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +40,7 @@ export default function RootLayout({
         geistSans.variable,
         geistMono.variable,
         inter.variable,
+        neuton.variable,
         "font-sans"
       )}
     >

@@ -65,10 +65,6 @@ export function AboutSkillsSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl mb-12 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-xl mb-3.5 text-[10px] sm:text-[11px] font-mono tracking-widest text-zinc-300 uppercase shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]">
-            <UserCheck size={12} className="text-white" />
-            <span>ABOUT & DISCIPLINES</span>
-          </div>
           <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4">
             BRIDGING CODE & VISUAL CRAFT
           </h2>

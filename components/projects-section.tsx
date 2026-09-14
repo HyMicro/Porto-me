@@ -166,10 +166,6 @@ export function ProjectsSection() {
           className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6"
         >
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-xl mb-4 text-[11px] font-mono tracking-widest text-zinc-300 uppercase shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]">
-              <Gamepad2 size={13} className="text-white" />
-              <span>CASE STUDIES & WORKS</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
               FEATURED PROJECTS
             </h2>
@@ -236,9 +232,8 @@ export function ProjectsSection() {
                   damping: 24,
                 }}
                 whileTap={isTop ? { cursor: "grabbing" } : {}}
-                className={`absolute w-full max-w-4xl p-7 sm:p-10 rounded-2xl border border-white/20 bg-zinc-950/95 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_50px_rgba(0,0,0,0.6)] transition-all ${
-                  isTop ? "cursor-grab active:cursor-grabbing hover:border-white/40" : "pointer-events-none"
-                }`}
+                className={`absolute w-full max-w-4xl p-7 sm:p-10 rounded-2xl border border-white/20 bg-zinc-950/95 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_50px_rgba(0,0,0,0.6)] transition-all ${isTop ? "cursor-grab active:cursor-grabbing hover:border-white/40" : "pointer-events-none"
+                  }`}
                 style={{
                   transformOrigin: "top center",
                 }}
@@ -354,11 +349,10 @@ export function ProjectsSection() {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
-                currentIndex === idx
-                  ? "w-8 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"
-                  : "w-2 bg-zinc-700 hover:bg-zinc-500"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${currentIndex === idx
+                ? "w-8 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                : "w-2 bg-zinc-700 hover:bg-zinc-500"
+                }`}
               aria-label={`Jump to case study ${idx + 1}`}
             />
           ))}
@@ -373,10 +367,6 @@ export function ProjectsSection() {
           className="mt-28 border-t border-white/10 pt-20"
         >
           <div className="text-center mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-xl text-[11px] font-mono tracking-widest text-zinc-300 uppercase shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]">
-              <Layers size={13} className="text-white" />
-              <span>INTERACTIVE SYSTEM ARCHITECTURE</span>
-            </div>
             <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
               ENGINEERING PHILOSOPHY & DEEP DIVES
             </h3>

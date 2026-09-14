@@ -17,6 +17,7 @@ export interface Hero12Props {
   animation?: "none" | "subtle";
   primaryCTA?: CtaProps;
   variant?: "standard" | "compact";
+  titleClassName?: string;
   children?: React.ReactNode;
 }
 
@@ -92,6 +93,7 @@ export function Hero12({
   animation = "none",
   primaryCTA,
   variant = "standard",
+  titleClassName,
   children,
 }: Readonly<Hero12Props>) {
   const reduce = useReducedMotion();
@@ -116,7 +118,7 @@ export function Hero12({
 
   const titleElement = title && (
     <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-      <h1 className={cn("font-normal tracking-tight text-white", vs.title)}>
+      <h1 className={cn("font-normal tracking-tight text-white", vs.title, titleClassName)}>
         <Balancer>{title}</Balancer>
       </h1>
       {established && (
