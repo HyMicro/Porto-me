@@ -1,8 +1,18 @@
 "use client";
 
 import type { DialogRootActions } from "@base-ui/react/dialog";
-import { PlusIcon, X } from "lucide-react";
-import { AnimatePresence, LayoutGroup, motion } from "motion/react";
+import {
+  Clock,
+  Eye,
+  Gamepad2,
+  Layers,
+  Mountain,
+  PlusIcon,
+  Terminal,
+  X,
+  Zap,
+} from "lucide-react";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/morphing-dialog-utils/button";
 import {
@@ -14,7 +24,17 @@ import {
   DialogTitle,
   DialogViewport,
 } from "@/components/ui/morphing-dialog-utils/dialog";
-import { ScrollArea } from "@/components/ui/morphing-dialog-utils/scroll-area";
+import { AnimatedHikeCard, Stat } from "@/components/ui/card-25";
+
+export interface CardItem {
+  id: string;
+  title: string;
+  image: string;
+  images: string[];
+  stats: Stat[];
+  description: string;
+  content: React.ReactNode;
+}
 
 export interface MorphingDialogProps {
   items?: CardItem[];
@@ -40,54 +60,35 @@ export function MorphingDialog({ items }: MorphingDialogProps = {}) {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <LayoutGroup>
-        <ScrollArea
-          className="w-full whitespace-nowrap container overflow-x-auto pb-4"
-          noScrollBar
-        >
-          <div className="flex gap-4 md:gap-6 lg:gap-8 mx-auto justify-center">
-            {displayItems.map((item) => (
-              <motion.button
-                className="relative group flex flex-col cursor-pointer bg-zinc-900/90 hover:bg-zinc-800/90 border border-white/10 hover:border-white/25 transition-all duration-300 flex-1 min-w-[260px] max-w-[320px] size-72 lg:size-80 rounded-2xl overflow-hidden focus-visible:outline focus-visible:outline-ring focus-visible:ring-4 focus-visible:ring-ring/10 shadow-xl"
-                key={item.id}
-                layoutId={`card-container-${item.id}`}
-                onClick={() => handleOpen(item)}
-                style={{
-                  opacity: activeItem?.id === item.id && isOpen ? 0 : 1,
-                  pointerEvents:
-                    activeItem?.id === item.id && isOpen ? "none" : "auto",
+        {/* Grid of AnimatedHikeCards triggers */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-2 sm:px-4">
+          {displayItems.map((item) => (
+            <motion.div
+              key={item.id}
+              layoutId={`card-container-${item.id}`}
+              className="w-full flex justify-center"
+              style={{
+                opacity: activeItem?.id === item.id && isOpen ? 0 : 1,
+                pointerEvents: activeItem?.id === item.id && isOpen ? "none" : "auto",
+              }}
+            >
+              <AnimatedHikeCard
+                title={item.title}
+                images={item.images}
+                stats={item.stats}
+                description={item.description}
+                onClick={(e) => {
+                  e?.preventDefault();
+                  handleOpen(item);
                 }}
-              >
-                <div className="relative h-48 w-full overflow-hidden rounded-t-2xl">
-                  <motion.div
-                    className="w-full h-full"
-                    layoutId={`image-container-${item.id}`}
-                  >
-                    <img
-                      alt={item.title}
-                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      height={500}
-                      src={item.image}
-                      width={500}
-                    />
-                  </motion.div>
-                </div>
-                <div className="flex flex-1 p-5 justify-between items-center bg-zinc-950/80 backdrop-blur-md">
-                  <motion.h3
-                    className="text-lg font-bold text-white tracking-tight"
-                    layoutId={`title-${item.id}`}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {item.title}
-                  </motion.h3>
+              />
+            </motion.div>
+          ))}
+        </div>
 
-                  <PlusIcon className="group-hover:text-white text-zinc-400 group-hover:rotate-90 transition-all duration-300" />
-                </div>
-              </motion.button>
-            ))}
-          </div>
-        </ScrollArea>
+        {/* Morphing Modal Dialog */}
         <Dialog
           actionsRef={actionsRef}
           onOpenChange={handleClose}
@@ -96,13 +97,13 @@ export function MorphingDialog({ items }: MorphingDialogProps = {}) {
           <AnimatePresence mode="popLayout">
             {isOpen && activeItem && (
               <DialogPortal keepMounted>
-                <DialogBackdrop className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm" />
+                <DialogBackdrop className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md" />
                 <DialogViewport
-                  className="fixed inset-0 z-50 grid place-items-center p-4 pt-12 sm:pt-20 overflow-y-auto"
+                  className="fixed inset-0 z-50 grid place-items-center p-3 sm:p-6 overflow-y-auto"
                   hidden={false}
                 >
                   <DialogPopup
-                    className="relative w-full max-w-4xl flex flex-col overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 shadow-2xl"
+                    className="relative w-full max-w-4xl max-h-[90vh] sm:max-h-[85vh] flex flex-col overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 shadow-2xl my-auto"
                     hidden={false}
                     render={
                       <motion.div
@@ -116,17 +117,31 @@ export function MorphingDialog({ items }: MorphingDialogProps = {}) {
                       />
                     }
                   >
-                    <ScrollArea className="h-[calc(85vh-2rem)] max-h-[800px]" noScrollBar>
+                    {/* Fixed Close Button at Top Right */}
+                    <DialogClose
+                      className="absolute right-4 top-4 z-30"
+                      render={
+                        <Button
+                          className="rounded-full shadow-lg bg-black/70 hover:bg-black/95 text-white border border-white/20 p-2 cursor-pointer transition-transform hover:scale-105"
+                          size="icon"
+                          variant="secondary"
+                        >
+                          <X size={18} />
+                        </Button>
+                      }
+                    />
+
+                    {/* Scrollable Container with Smooth Touch & Mouse Scrolling */}
+                    <div className="w-full h-full max-h-[90vh] sm:max-h-[85vh] overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-950 focus:outline-none">
                       <motion.div
                         animate={{ opacity: 1 }}
-                        className="flex flex-col h-full pb-10"
+                        className="flex flex-col min-h-full pb-12"
                         exit={{ opacity: 0 }}
                         initial={{ opacity: 0 }}
-                        transition={{
-                          duration: 0.15,
-                        }}
+                        transition={{ duration: 0.2 }}
                       >
-                        <div className="relative h-64 sm:h-96 w-full shrink-0 overflow-hidden">
+                        {/* Modal Hero Banner - Square Aspect Ratio Framed */}
+                        <div className="relative aspect-square sm:aspect-[16/9] max-h-72 sm:max-h-80 w-full shrink-0 overflow-hidden bg-zinc-900 border-b border-white/10">
                           <motion.div
                             className="w-full h-full"
                             layoutId={`image-container-${activeItem.id}`}
@@ -134,45 +149,49 @@ export function MorphingDialog({ items }: MorphingDialogProps = {}) {
                             <img
                               alt={activeItem.title}
                               className="h-full w-full object-cover"
-                              height={500}
                               src={activeItem.image}
-                              width={500}
                             />
+                            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
                           </motion.div>
                         </div>
 
-                        <div className="flex flex-col p-6 sm:p-10 justify-start text-left space-y-6">
-                          <DialogTitle
-                            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight"
-                            render={
-                              <motion.h2 layoutId={`title-${activeItem.id}`}>
-                                {activeItem.title}
-                              </motion.h2>
-                            }
-                          />
+                        {/* Modal Body Content - Standardized Text Spacing & Uniform Gaps */}
+                        <div className="flex flex-col p-6 sm:p-8 justify-start text-left space-y-6">
+                          {/* Modal Title & Stats */}
+                          <div className="space-y-3">
+                            <DialogTitle
+                              className="text-2xl sm:text-4xl font-bold text-white tracking-tight"
+                              render={
+                                <motion.h2 layoutId={`title-${activeItem.id}`}>
+                                  {activeItem.title}
+                                </motion.h2>
+                              }
+                            />
+                            <div className="flex flex-wrap items-center gap-2 pt-1">
+                              {activeItem.stats.map((st, i) => (
+                                <span
+                                  key={i}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono bg-white/[0.06] border border-white/10 text-zinc-300"
+                                >
+                                  {st.icon}
+                                  <span>{st.label}</span>
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Scrollable Rich Body - Uniform Paragraph & List Spacing */}
                           <motion.div
                             animate={{ opacity: 1, y: 0 }}
                             initial={{ opacity: 0, y: 10 }}
-                            transition={{ delay: 0.2 }}
+                            transition={{ delay: 0.15 }}
+                            className="pt-2 text-zinc-300 leading-relaxed font-sans space-y-6"
                           >
                             {activeItem.content}
                           </motion.div>
                         </div>
-
-                        <DialogClose
-                          className="absolute right-4 top-4 z-20"
-                          render={
-                            <Button
-                              className="rounded-full shadow-lg bg-black/60 hover:bg-black/90 text-white border border-white/20"
-                              size="icon"
-                              variant="secondary"
-                            >
-                              <X size={18} />
-                            </Button>
-                          }
-                        />
                       </motion.div>
-                    </ScrollArea>
+                    </div>
                   </DialogPopup>
                 </DialogViewport>
               </DialogPortal>
@@ -184,51 +203,57 @@ export function MorphingDialog({ items }: MorphingDialogProps = {}) {
   );
 }
 
-type CardItem = {
-  id: string;
-  title: string;
-  image: string;
-  content: React.ReactNode;
-};
-
 const ITEMS: CardItem[] = [
   {
-    id: "card-1",
-    title: "Phone Mechanics System",
+    id: "card-9-to-fight",
+    title: "9 - TO - FIGHT",
     image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+    ],
+    stats: [
+      { icon: <Gamepad2 className="h-3.5 w-3.5" />, label: "UE5 2.5D" },
+      { icon: <Zap className="h-3.5 w-3.5" />, label: "Comedy Shooter" },
+      { icon: <Clock className="h-3.5 w-3.5" />, label: "10-Day Incubation" },
+    ],
+    description:
+      "Top-down 2.5D comedy shooter where corporate grind turns into chaotic office warfare using improvised supplies.",
     content: (
-      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
-        <p className="text-base text-zinc-200">
-          Created an in-game simulated smartphone mechanic in Unreal Engine featuring dynamic messaging, an interactive inbox panel, and real-time pop-up notifications.
+      <div className="space-y-5 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
+          Created during Indonesia&apos;s largest game competition and incubation program organized by the Ministry of Creative Economy (~10 days). In this top-down 2.5D comedy shooter, the corporate grind turns into chaotic office warfare.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
-          <li>
-            <strong className="text-white">Message Struct Data Model:</strong> Each incoming message stores sender name, content string, timestamp, and boolean read status.
+        <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
+          <li className="leading-relaxed">
+            <strong className="text-white">Top-Down 2.5D Controls:</strong> Programmed character locomotion, aiming vectors, and physics collisions in Unreal Engine 5.
           </li>
-          <li>
-            <strong className="text-white">Message List Source:</strong> All messages gather in a dynamic Message List array serving as the single source of truth.
+          <li className="leading-relaxed">
+            <strong className="text-white">Improvised Office Weapons:</strong> Designed chaotic weapon mechanics using everyday office supplies (staplers, tape dispensers, keyboard projectiles).
           </li>
-          <li>
-            <strong className="text-white">3-Part UI Architecture:</strong> 1) Notification popup alerts player on new message, 2) Inbox panel lists incoming conversations, 3) Preview panel displays full selected message text.
+          <li className="leading-relaxed">
+            <strong className="text-white">Team Sabotage Mechanics:</strong> Implemented player sabotage interactions and corporate rank progression to claim &ldquo;Employee of the Month&rdquo;.
           </li>
         </ul>
-        <div className="pt-6">
-          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
-            Architecture Blueprint
+
+        <div className="pt-4 border-t border-white/10 space-y-4">
+          <h4 className="text-white font-semibold text-base sm:text-lg tracking-tight">
+            Incubation Workflow & Technical Highlights
           </h4>
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="bg-zinc-900/80 border border-white/10 rounded-lg p-3 text-center space-y-1">
-              <span className="text-xs font-mono text-zinc-400 block">01. NOTIFICATION</span>
-              <p className="text-xs text-zinc-300">Informs player of unread incoming text</p>
+            <div className="bg-zinc-900/80 border border-white/10 rounded-xl p-4 space-y-2">
+              <span className="text-xs font-mono text-zinc-400 block font-semibold">01. 2.5D LOCOMOTION</span>
+              <p className="text-xs text-zinc-300 leading-relaxed">Smooth camera tracking and 360-degree top-down aim offset calculation in C++ & Blueprint.</p>
             </div>
-            <div className="bg-zinc-900/80 border border-white/10 rounded-lg p-3 text-center space-y-1">
-              <span className="text-xs font-mono text-zinc-400 block">02. INBOX PANEL</span>
-              <p className="text-xs text-zinc-300">Displays scrollable list of conversations</p>
+            <div className="bg-zinc-900/80 border border-white/10 rounded-xl p-4 space-y-2">
+              <span className="text-xs font-mono text-zinc-400 block font-semibold">02. COMBAT PHYSICS</span>
+              <p className="text-xs text-zinc-300 leading-relaxed">Improvised weapon trace detection and recoil impulse response system.</p>
             </div>
-            <div className="bg-zinc-900/80 border border-white/10 rounded-lg p-3 text-center space-y-1">
-              <span className="text-xs font-mono text-zinc-400 block">03. PREVIEW CARD</span>
-              <p className="text-xs text-zinc-300">Shows complete message body and sender data</p>
+            <div className="bg-zinc-900/80 border border-white/10 rounded-xl p-4 space-y-2">
+              <span className="text-xs font-mono text-zinc-400 block font-semibold">03. INCUBATION DELIVERABLE</span>
+              <p className="text-xs text-zinc-300 leading-relaxed">Delivered a fully playable 2.5D game prototype under strict 10-day sprint milestones.</p>
             </div>
           </div>
         </div>
@@ -236,38 +261,164 @@ const ITEMS: CardItem[] = [
     ),
   },
   {
-    id: "card-2",
-    title: "Last Breath Survival Systems",
+    id: "card-bubble-cuts",
+    title: "BUBBLE CUTS",
     image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=1200&auto=format&fit=crop",
+    ],
+    stats: [
+      { icon: <Gamepad2 className="h-3.5 w-3.5" />, label: "Rhythm Action" },
+      { icon: <Clock className="h-3.5 w-3.5" />, label: "48-Hour Jam" },
+      { icon: <Zap className="h-3.5 w-3.5" />, label: "Spacebar Timing" },
+    ],
+    description:
+      "Rhythm action game created in 48 hours for Global Game Jam 2025 under the theme 'Bubble'.",
     content: (
-      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
-        <p className="text-base text-zinc-200">
-          In <em>The Last Breath Protocol</em>, players control bio-engineered tiger Unit T-47 awakening on a damaged spaceship amidst cosmic destruction.
+      <div className="space-y-5 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
+          Completed in just 48 hours during Global Game Jam 2025! Bubi fights monsters with her secret weapon: bubble breathing technique! Players press spacebar in sync to expand bubbles and strike incoming monsters.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
-          <li>
-            <strong className="text-white">Oxygen Depletion Logic:</strong> Real-time oxygen meter mechanics requiring resource management and environmental oxygen refills.
+        <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
+          <li className="leading-relaxed">
+            <strong className="text-white">Precision Rhythm Windows:</strong> Programmed spacebar input timing detection linked to audio beats and visual expansion cues.
           </li>
-          <li>
-            <strong className="text-white">Interaction Mechanics:</strong> Object grabbing (G key), system repair triggers (E key prompts), and item usage.
+          <li className="leading-relaxed">
+            <strong className="text-white">Dynamic Bubble Scaling:</strong> Created reactive bubble expansion feedback proportional to player hit accuracy (Perfect, Good, Miss).
           </li>
-          <li>
-            <strong className="text-white">Environmental Hazards:</strong> Toxic gas leaks and system failure events requiring fast repair responses under pressure.
+          <li className="leading-relaxed">
+            <strong className="text-white">48-Hour Rapid Sprint:</strong> Collaborated with artists and audio designers under predetermined game jam theme constraints.
           </li>
         </ul>
-        <div className="pt-6">
-          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
+
+        <div className="pt-4 border-t border-white/10 space-y-4">
+          <h4 className="text-white font-semibold text-base sm:text-lg tracking-tight">
+            Rhythm System Specifications
+          </h4>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="bg-zinc-900 border border-white/10 rounded-xl p-4 space-y-2">
+              <span className="text-xs font-mono text-white font-semibold">INPUT TIMING ENGINE</span>
+              <p className="text-xs text-zinc-400 leading-relaxed">Deterministic millisecond input window calculations ensuring responsive rhythm battle feedback.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 rounded-xl p-4 space-y-2">
+              <span className="text-xs font-mono text-white font-semibold">VISUAL EXPANSION SHADER</span>
+              <p className="text-xs text-zinc-400 leading-relaxed">Dynamic bubble scaling material reacting synchronously with timing accuracy state changes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "card-phone-mechanics",
+    title: "PHONE SUBSYSTEM",
+    image:
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    ],
+    stats: [
+      { icon: <Terminal className="h-3.5 w-3.5" />, label: "C++ & Blueprint" },
+      { icon: <Layers className="h-3.5 w-3.5" />, label: "UMG / Slate" },
+      { icon: <Zap className="h-3.5 w-3.5" />, label: "Message Struct" },
+    ],
+    description:
+      "Simulated in-game smartphone system featuring messaging, inbox panel, and real-time notification alerts.",
+    content: (
+      <div className="space-y-5 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
+          Engineered a comprehensive &lsquo;Phone&rsquo; mechanic simulating a smartphone inside Unreal Engine 5 at Bumi Studio. Features dynamic messaging, inbox list views, and real-time pop-up notification alerts.
+        </p>
+        <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
+          <li className="leading-relaxed">
+            <strong className="text-white">Message Struct Data Architecture:</strong> Incoming messages are encapsulated in a custom C++ struct containing Sender Name, Message Body, Timestamp, and Read Status.
+          </li>
+          <li className="leading-relaxed">
+            <strong className="text-white">Dynamic Message List Source:</strong> Structured array acting as the unified data provider for real-time UMG UI data binding.
+          </li>
+          <li className="leading-relaxed">
+            <strong className="text-white">3 Interconnected UI Modules:</strong>
+            <ul className="list-circle pl-5 mt-2 space-y-1 text-zinc-400 text-xs sm:text-sm">
+              <li>1. Notification Alert: Informs player of unread incoming texts.</li>
+              <li>2. Inbox Panel: Displays scrollable list of received messages.</li>
+              <li>3. Message Preview: Shows full content of selected conversation.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div className="pt-4 border-t border-white/10 space-y-4">
+          <h4 className="text-white font-semibold text-base sm:text-lg tracking-tight">
+            Architecture Blueprint & Modules
+          </h4>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="bg-zinc-900/80 border border-white/10 rounded-xl p-4 text-center space-y-1">
+              <span className="text-xs font-mono text-zinc-400 block font-semibold">01. NOTIFICATION</span>
+              <p className="text-xs text-zinc-300 leading-relaxed">Informs player of unread incoming text</p>
+            </div>
+            <div className="bg-zinc-900/80 border border-white/10 rounded-xl p-4 text-center space-y-1">
+              <span className="text-xs font-mono text-zinc-400 block font-semibold">02. INBOX PANEL</span>
+              <p className="text-xs text-zinc-300 leading-relaxed">Displays scrollable list of conversations</p>
+            </div>
+            <div className="bg-zinc-900/80 border border-white/10 rounded-xl p-4 text-center space-y-1">
+              <span className="text-xs font-mono text-zinc-400 block font-semibold">03. PREVIEW CARD</span>
+              <p className="text-xs text-zinc-300 leading-relaxed">Shows complete message body and sender data</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "card-last-breath",
+    title: "LAST BREATH PROTOCOL",
+    image:
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1200&auto=format&fit=crop",
+    ],
+    stats: [
+      { icon: <Mountain className="h-3.5 w-3.5" />, label: "Sci-Fi Survival" },
+      { icon: <Zap className="h-3.5 w-3.5" />, label: "Oxygen System" },
+      { icon: <Terminal className="h-3.5 w-3.5" />, label: "Unit T-47" },
+    ],
+    description:
+      "Sci-fi survival game focusing on exploration, oxygen management, system repairs, and environmental hazards.",
+    content: (
+      <div className="space-y-5 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
+          In <em>The Last Breath Protocol</em>, the player takes on the role of Unit T-47, a bio-engineered tiger explorer awakening from cryosleep amidst spaceship ruins following a cosmic catastrophe.
+        </p>
+        <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
+          <li className="leading-relaxed">
+            <strong className="text-white">Oxygen Survival Depletion:</strong> Real-time oxygen meter depletion system requiring resource management and environmental oxygen refills.
+          </li>
+          <li className="leading-relaxed">
+            <strong className="text-white">Interactive Ship Repairs:</strong> Programmed object grabbing (<code className="text-xs bg-zinc-900 px-1.5 py-0.5 rounded border border-white/10">G</code> key) and repair triggers (<code className="text-xs bg-zinc-900 px-1.5 py-0.5 rounded border border-white/10">E</code> key prompts).
+          </li>
+          <li className="leading-relaxed">
+            <strong className="text-white">Toxic Gas Hazards:</strong> Built environmental hazards causing toxic gas leaks and ship system failures requiring fast tactical responses.
+          </li>
+        </ul>
+
+        <div className="pt-4 border-t border-white/10 space-y-4">
+          <h4 className="text-white font-semibold text-base sm:text-lg tracking-tight">
             Core Gameplay Mechanics
           </h4>
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="bg-zinc-900 border border-white/10 rounded-lg p-4 space-y-2">
+            <div className="bg-zinc-900 border border-white/10 rounded-xl p-4 space-y-2">
               <span className="text-xs font-mono text-white font-semibold">SHIP REPAIR SYSTEM</span>
-              <p className="text-xs text-zinc-400">Time-sensitive interaction mechanics to fix failing oxygen generators and propulsion thrusters.</p>
+              <p className="text-xs text-zinc-400 leading-relaxed">Time-sensitive interaction mechanics to fix failing oxygen generators and propulsion thrusters.</p>
             </div>
-            <div className="bg-zinc-900 border border-white/10 rounded-lg p-4 space-y-2">
+            <div className="bg-zinc-900 border border-white/10 rounded-xl p-4 space-y-2">
               <span className="text-xs font-mono text-white font-semibold">ENVIRONMENTAL THREATS</span>
-              <p className="text-xs text-zinc-400">Dynamic toxic gas leaks causing rapid health deterioration if unaddressed.</p>
+              <p className="text-xs text-zinc-400 leading-relaxed">Dynamic toxic gas leaks causing rapid health deterioration if unaddressed.</p>
             </div>
           </div>
         </div>
@@ -275,70 +426,96 @@ const ITEMS: CardItem[] = [
     ),
   },
   {
-    id: "card-3",
-    title: "Stylised Water Shader System",
+    id: "card-water-simulation",
+    title: "WATER SIMULATION",
     image:
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1200&auto=format&fit=crop",
+    ],
+    stats: [
+      { icon: <Layers className="h-3.5 w-3.5" />, label: "UE5 Shader" },
+      { icon: <Zap className="h-3.5 w-3.5" />, label: "Flow Maps" },
+      { icon: <Eye className="h-3.5 w-3.5" />, label: "Dynamic Depth" },
+    ],
+    description:
+      "Stylised dynamic water material system in Unreal Engine 5 using complex shader techniques.",
     content: (
-      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
-        <p className="text-base text-zinc-200">
-          Engineered a custom stylised water material shader in Unreal Engine 5 using a complex material graph to achieve vibrant liquid aesthetics.
+      <div className="space-y-5 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
+          Created a stylised water material in Unreal Engine 5 using a complex material graph to produce a dynamic and immersive visual representation of water.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
-          <li>
-            <strong className="text-white">Custom Flow Map Panning:</strong> Vector direction flow maps creating realistic directional water currents.
+        <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
+          <li className="leading-relaxed">
+            <strong className="text-white">Custom Flow Map Panning:</strong> Vector direction flow map movement creating realistic liquid surface panning.
           </li>
-          <li>
-            <strong className="text-white">Distance-Field Foam Layers:</strong> Layered foam generation and edge highlight distance fields around shoreline collisions.
+          <li className="leading-relaxed">
+            <strong className="text-white">Layered Foam System:</strong> Multi-layered shoreline foam generation and edge highlight distance fields.
           </li>
-          <li>
-            <strong className="text-white">Dynamic Depth Color:</strong> Smooth gradient color transitions between shallow shore water and deep ocean depths.
+          <li className="leading-relaxed">
+            <strong className="text-white">Dynamic Depth Color:</strong> Smooth depth color transitions between shallow shorelines and deep water bodies.
           </li>
         </ul>
-        <div className="pt-6">
-          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
-            Exposed Material Parameters
+
+        <div className="pt-4 border-t border-white/10 space-y-4">
+          <h4 className="text-white font-semibold text-base sm:text-lg tracking-tight">
+            Exposed Shader Parameters
           </h4>
-          <div className="grid gap-2 sm:grid-cols-2 text-xs font-mono text-zinc-300">
-            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• OceanFoam: 60.0</div>
-            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• OceanSpeed: 0.3</div>
-            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• DepthWater: 300.0</div>
-            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• Realtime Wave Customization</div>
+          <div className="grid gap-3 sm:grid-cols-2 text-xs font-mono text-zinc-300">
+            <div className="bg-zinc-900/80 p-3 rounded-lg border border-white/10">• OceanFoam: 60.0</div>
+            <div className="bg-zinc-900/80 p-3 rounded-lg border border-white/10">• OceanSpeed: 0.3</div>
+            <div className="bg-zinc-900/80 p-3 rounded-lg border border-white/10">• DepthWater: 300.0</div>
+            <div className="bg-zinc-900/80 p-3 rounded-lg border border-white/10">• Realtime Material Customization</div>
           </div>
         </div>
       </div>
     ),
   },
   {
-    id: "card-4",
-    title: "Integrated Lab Branding & UI/UX",
+    id: "card-ui-ux-branding",
+    title: "INTEGRATED LAB & BRAND",
     image:
       "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop",
+    ],
+    stats: [
+      { icon: <Layers className="h-3.5 w-3.5" />, label: "Figma UI/UX" },
+      { icon: <Eye className="h-3.5 w-3.5" />, label: "{/} Lab Brand" },
+      { icon: <Zap className="h-3.5 w-3.5" />, label: "Social Feed" },
+    ],
+    description:
+      "Complete visual identity branding ({/} lab), Instagram/TikTok feed poster designs, and web/mobile UI/UX apps.",
     content: (
-      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
-        <p className="text-base text-zinc-200">
-          Designed complete visual identity for Integrated Laboratory System (I-Lab), promotional social media feed designs, and mobile/web UI/UX.
+      <div className="space-y-5 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
+          Designed complete visual identity branding for Integrated Laboratory System (I-Lab), promotional social media feed designs for events, and mobile/web UI/UX apps.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
-          <li>
-            <strong className="text-white">I-Lab Logo System:</strong> Code bracket symbol <code>{`{/}`}</code> combined with candle flame motif across dark and light app cards.
+        <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
+          <li className="leading-relaxed">
+            <strong className="text-white">I-Lab Logo System:</strong> Code bracket symbol <code className="text-xs bg-zinc-900 px-1.5 py-0.5 rounded border border-white/10">{`{/}`}</code> combined with candle flame motif across dark and light app cards.
           </li>
-          <li>
-            <strong className="text-white">Social Media Feed Design:</strong> Promotional posters for Informatics Expo, Ghost Runner, World Laboratory Day, and UI/UX Events on Instagram & TikTok.
+          <li className="leading-relaxed">
+            <strong className="text-white">Social Media Feed Design:</strong> Promotional posters for Informatics Expo, Ghost Runner, World Laboratory Day, and Upgrading UI/UX Event on Instagram & TikTok (@labit.umm).
           </li>
-          <li>
+          <li className="leading-relaxed">
             <strong className="text-white">Mobile & Web UI/UX:</strong> Sumba Island travel app, Kekita donation platform, and Wukong game store interfaces.
           </li>
         </ul>
-        <div className="pt-6">
-          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
-            Design Stack
+
+        <div className="pt-4 border-t border-white/10 space-y-4">
+          <h4 className="text-white font-semibold text-base sm:text-lg tracking-tight">
+            Design Tools & Software Stack
           </h4>
           <div className="flex flex-wrap gap-2 text-xs font-mono">
-            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Figma</span>
-            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Adobe Photoshop</span>
-            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Adobe Illustrator</span>
-            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Brand Systems</span>
+            <span className="px-3 py-1.5 bg-zinc-900 border border-white/10 rounded-lg text-zinc-300 font-semibold">Figma</span>
+            <span className="px-3 py-1.5 bg-zinc-900 border border-white/10 rounded-lg text-zinc-300 font-semibold">Adobe Photoshop</span>
+            <span className="px-3 py-1.5 bg-zinc-900 border border-white/10 rounded-lg text-zinc-300 font-semibold">Adobe Illustrator</span>
+            <span className="px-3 py-1.5 bg-zinc-900 border border-white/10 rounded-lg text-zinc-300 font-semibold">Brand Identity</span>
           </div>
         </div>
       </div>
