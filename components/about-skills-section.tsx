@@ -16,34 +16,34 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "game-dev",
     title: "Game Development",
-    badge: "PRIMARY FOCUS",
+    badge: "CORE DISCIPLINE",
     icon: Gamepad2,
-    description: "Gameplay programming, combat mechanics, and diegetic UI architecture in Unreal Engine 5.",
-    skills: ["Unreal Engine 5.6", "Gameplay Programming", "Blueprint & C++", "Combat Systems", "Game UI (UMG/Slate)"],
+    description: "Gameplay programming, character mechanics, level sequencing, and animation systems in Unreal Engine 5.",
+    skills: ["Unreal Engine 5", "Blueprints", "C++", "Gameplay Programming", "Game Mechanics", "Level Sequencing", "Animation Systems"],
   },
   {
     id: "programming",
     title: "Systems & Programming",
-    badge: "ENGINEERING",
+    badge: "TECHNICAL SKILLS",
     icon: Terminal,
-    description: "Low-level logic, tool automation, and modular software architectures.",
-    skills: ["C++ Architecture", "Blueprint Scripting", "Python Automation", "TypeScript / Next.js", "Git & Debugging"],
+    description: "Object-oriented code, version control pipelines, and modern web application development.",
+    skills: ["C++", "Git", "Git LFS", "Python", "HTML", "CSS", "Vue.js", "React"],
   },
   {
     id: "ui-ux",
-    title: "UI/UX & Product Design",
+    title: "UI/UX Design",
     badge: "HUMAN-CENTERED",
     icon: Layers,
-    description: "Design systems, wireframes, and high-fidelity interactive prototypes.",
-    skills: ["UI/UX Design", "Figma Prototyping", "Design Systems", "Visual Hierarchy", "Micro-Interactions"],
+    description: "Interactive experiences, wireframes, component design systems, and high-fidelity Figma prototypes.",
+    skills: ["UI/UX Design", "Figma", "UI Implementation", "Interactive Experiences", "User Interfaces"],
   },
   {
     id: "creative-visual",
-    title: "Visual & Technical Art",
-    badge: "AESTHETICS",
+    title: "Graphic & Creative Design",
+    badge: "VISUAL ARTS",
     icon: Eye,
-    description: "Brand identity, motion graphics, and technical art integration.",
-    skills: ["Graphic Design", "Brand Systems", "Motion Design", "Visual Direction", "Technical Art"],
+    description: "Brand identity logos, 3D modeling assets, and social media feed poster story design.",
+    skills: ["Adobe Photoshop", "Adobe Illustrator", "Blender", "Logo Design", "Social Media Feed Design"],
   },
 ];
 
@@ -63,13 +63,16 @@ export function AboutSkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl mb-12 sm:mb-16"
+          className="max-w-3xl mb-12 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-            BRIDGING CODE & VISUAL CRAFT
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4 uppercase">
+            ABOUT & TECHNICAL SKILLS
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
-            Computer Science background focused on <span className="text-zinc-200 font-medium">Unreal Engine gameplay programming</span> and <span className="text-zinc-200 font-medium">UI/UX design systems</span>. Building cohesive digital experiences where systems logic and interface aesthetics operate in harmony.
+          <blockquote className="border-l-2 border-white/30 pl-4 py-1 text-sm sm:text-base text-zinc-300 italic font-normal leading-relaxed mb-6">
+            &ldquo;Hi, I&apos;m Ahyad Izzuddin Syuhaiba, an Informatics student passionate about game development. Passionate Unreal Engine Gameplay Programmer with experience developing gameplay systems, UI mechanics, and interactive experiences. I enjoy building scalable game mechanics and collaborating with multidisciplinary teams to deliver immersive gameplay.&rdquo;
+          </blockquote>
+          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
+            Computer Science graduate with experience in <span className="text-zinc-200 font-medium">Unreal Engine development</span>, <span className="text-zinc-200 font-medium">UI/UX design</span>, and <span className="text-zinc-200 font-medium">graphic design</span>. Skilled in combining technical and creative skills to develop functional, intuitive, and engaging digital experiences.
           </p>
         </motion.div>
 

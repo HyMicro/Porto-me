@@ -141,14 +141,14 @@ export function HeroSection() {
       <div className="relative z-20 pt-20 sm:pt-24 flex-1 flex flex-col justify-between">
         <Hero12
           title="AHYAD IZZUDDIN SYUHAIBA"
-          established="Est. 2026"
-          description="Personal portfolio showcasing my experience in web development, Unreal Engine 5 game development, UI/UX design, and graphic design."
+          established="Game Dev • UI/UX • Graphic Design"
+          description="Unreal Engine Gameplay Programmer, UI/UX Designer & Graphic Designer. Combining technical logic and creative design to engineer engaging interactive experiences."
           animation="subtle"
           variant="standard"
           titleClassName="font-neuton"
           primaryCTA={{
             ctaEnabled: true,
-            text: "Initiate Contact",
+            text: "Get in Touch",
             link: "#contact",
             size: "default",
           }}

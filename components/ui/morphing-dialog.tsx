@@ -193,142 +193,156 @@ type CardItem = {
 
 const ITEMS: CardItem[] = [
   {
-    content: (
-      <div className="space-y-4 text-zinc-300 leading-relaxed">
-        <p>
-          Modern development is human + AI. We optimized Lumi UI's structure so
-          that AI assistants generate correct, idiomatic code on the first
-          attempt.
-        </p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>
-            <strong className="text-white">Flat Semantic Exports:</strong>{" "}
-            Every component is accessible at the root level, making it easier
-            for AI to infer usage and reducing context tokens.
-          </li>
-          <li>
-            <strong className="text-white">
-              Composites as Living Examples:
-            </strong>{" "}
-            Our composite components serve as executable documentation.
-          </li>
-          <li>
-            <strong className="text-white">Immutable Logic Blocks:</strong>{" "}
-            Primitives are stable building blocks. You compose them rather than
-            modifying core logic.
-          </li>
-        </ul>
-        <div className="pt-8">
-          <h4 className="text-white font-semibold mb-4 text-lg">
-            Deep Dive: Optimization
-          </h4>
-          <div className="grid gap-4">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div className="bg-zinc-900/80 border border-white/10 rounded-lg p-4 space-y-2" key={i}>
-                <div className="h-4 w-1/3 bg-zinc-800 rounded" />
-                <div className="h-20 w-full bg-zinc-800/60 rounded" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    ),
     id: "card-1",
+    title: "Phone Mechanics System",
     image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
-    title: "Discoverable",
-  },
-  {
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
     content: (
-      <div className="space-y-4 text-zinc-300 leading-relaxed">
-        <p>
-          Base UI provides the behavioral foundation, but we provide the visual
-          consistency. Every component adapts to your needs following a unified
-          language.
+      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-base text-zinc-200">
+          Created an in-game simulated smartphone mechanic in Unreal Engine featuring dynamic messaging, an interactive inbox panel, and real-time pop-up notifications.
         </p>
-        <ul className="list-disc pl-5 space-y-2">
+        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
           <li>
-            <strong className="text-white">The Utility Pattern:</strong> We
-            use utility classes to provide consistent styling across all
-            components.
+            <strong className="text-white">Message Struct Data Model:</strong> Each incoming message stores sender name, content string, timestamp, and boolean read status.
           </li>
           <li>
-            <strong className="text-white">Global Animation:</strong> All
-            interactive elements use globally configured animation utilities for
-            cohesive transitions.
+            <strong className="text-white">Message List Source:</strong> All messages gather in a dynamic Message List array serving as the single source of truth.
           </li>
           <li>
-            <strong className="text-white">Hit-Test Philosophy:</strong> We
-            use pseudo-elements to separate visual highlights from interactive
-            containers, creating forgiving, clickable areas.
+            <strong className="text-white">3-Part UI Architecture:</strong> 1) Notification popup alerts player on new message, 2) Inbox panel lists incoming conversations, 3) Preview panel displays full selected message text.
           </li>
         </ul>
-        <div className="pt-8">
-          <h4 className="text-white font-semibold mb-4 text-lg">
-            Design System Specs
+        <div className="pt-6">
+          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
+            Architecture Blueprint
           </h4>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="aspect-video bg-zinc-900 border border-white/10 rounded-lg w-full flex items-center justify-center text-zinc-400 font-mono text-sm">
-              Animation Curve Visualization
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="bg-zinc-900/80 border border-white/10 rounded-lg p-3 text-center space-y-1">
+              <span className="text-xs font-mono text-zinc-400 block">01. NOTIFICATION</span>
+              <p className="text-xs text-zinc-300">Informs player of unread incoming text</p>
             </div>
-            <div className="aspect-video bg-zinc-900 border border-white/10 rounded-lg w-full flex items-center justify-center text-zinc-400 font-mono text-sm">
-              Spacing Scale
+            <div className="bg-zinc-900/80 border border-white/10 rounded-lg p-3 text-center space-y-1">
+              <span className="text-xs font-mono text-zinc-400 block">02. INBOX PANEL</span>
+              <p className="text-xs text-zinc-300">Displays scrollable list of conversations</p>
+            </div>
+            <div className="bg-zinc-900/80 border border-white/10 rounded-lg p-3 text-center space-y-1">
+              <span className="text-xs font-mono text-zinc-400 block">03. PREVIEW CARD</span>
+              <p className="text-xs text-zinc-300">Shows complete message body and sender data</p>
             </div>
           </div>
         </div>
       </div>
     ),
+  },
+  {
     id: "card-2",
-    image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
-    title: "Predictable",
-  },
-  {
-    content: (
-      <div className="space-y-4 text-zinc-300 leading-relaxed">
-        <p>
-          We refuse the false dichotomy between speed and control. Our Dual
-          Layer Architecture accommodates both prototyping and polishing modes.
-        </p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>
-            <strong className="text-white">Composites = Velocity:</strong>{" "}
-            Pre-assembled components that combine structure, styling, and logic
-            for MVPs and standard use cases.
-          </li>
-          <li>
-            <strong className="text-white">Primitives = Control:</strong>{" "}
-            Thin wrappers around Base UI that enforce zero visual layout, giving
-            you complete control over DOM structure.
-          </li>
-          <li>
-            <strong className="text-white">Mix and Match:</strong> Use
-            composites for speed and primitive blocks for unique custom designs
-            in the same project.
-          </li>
-        </ul>
-        <div className="pt-8">
-          <h4 className="text-white font-semibold mb-4 text-lg">
-            Component Architecture
-          </h4>
-          <div className="flex flex-col gap-4">
-            <div className="h-28 bg-zinc-900/80 rounded-lg border-2 border-dashed border-white/20 flex items-center justify-center text-zinc-200 font-mono">
-              Composite Layer
-            </div>
-            <div className="h-6 text-center text-zinc-400 font-mono text-sm">
-              &darr; Adapts to &darr;
-            </div>
-            <div className="h-28 bg-zinc-900/80 rounded-lg border-2 border-dashed border-white/20 flex items-center justify-center text-zinc-200 font-mono">
-              Primitive Layer
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-    id: "card-3",
+    title: "Last Breath Survival Systems",
     image:
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
-    title: "Composable",
+    content: (
+      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-base text-zinc-200">
+          In <em>The Last Breath Protocol</em>, players control bio-engineered tiger Unit T-47 awakening on a damaged spaceship amidst cosmic destruction.
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
+          <li>
+            <strong className="text-white">Oxygen Depletion Logic:</strong> Real-time oxygen meter mechanics requiring resource management and environmental oxygen refills.
+          </li>
+          <li>
+            <strong className="text-white">Interaction Mechanics:</strong> Object grabbing (G key), system repair triggers (E key prompts), and item usage.
+          </li>
+          <li>
+            <strong className="text-white">Environmental Hazards:</strong> Toxic gas leaks and system failure events requiring fast repair responses under pressure.
+          </li>
+        </ul>
+        <div className="pt-6">
+          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
+            Core Gameplay Mechanics
+          </h4>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="bg-zinc-900 border border-white/10 rounded-lg p-4 space-y-2">
+              <span className="text-xs font-mono text-white font-semibold">SHIP REPAIR SYSTEM</span>
+              <p className="text-xs text-zinc-400">Time-sensitive interaction mechanics to fix failing oxygen generators and propulsion thrusters.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 rounded-lg p-4 space-y-2">
+              <span className="text-xs font-mono text-white font-semibold">ENVIRONMENTAL THREATS</span>
+              <p className="text-xs text-zinc-400">Dynamic toxic gas leaks causing rapid health deterioration if unaddressed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "card-3",
+    title: "Stylised Water Shader System",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+    content: (
+      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-base text-zinc-200">
+          Engineered a custom stylised water material shader in Unreal Engine 5 using a complex material graph to achieve vibrant liquid aesthetics.
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
+          <li>
+            <strong className="text-white">Custom Flow Map Panning:</strong> Vector direction flow maps creating realistic directional water currents.
+          </li>
+          <li>
+            <strong className="text-white">Distance-Field Foam Layers:</strong> Layered foam generation and edge highlight distance fields around shoreline collisions.
+          </li>
+          <li>
+            <strong className="text-white">Dynamic Depth Color:</strong> Smooth gradient color transitions between shallow shore water and deep ocean depths.
+          </li>
+        </ul>
+        <div className="pt-6">
+          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
+            Exposed Material Parameters
+          </h4>
+          <div className="grid gap-2 sm:grid-cols-2 text-xs font-mono text-zinc-300">
+            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• OceanFoam: 60.0</div>
+            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• OceanSpeed: 0.3</div>
+            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• DepthWater: 300.0</div>
+            <div className="bg-zinc-900/80 p-2.5 rounded border border-white/10">• Realtime Wave Customization</div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "card-4",
+    title: "Integrated Lab Branding & UI/UX",
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
+    content: (
+      <div className="space-y-4 text-zinc-300 leading-relaxed font-sans">
+        <p className="text-base text-zinc-200">
+          Designed complete visual identity for Integrated Laboratory System (I-Lab), promotional social media feed designs, and mobile/web UI/UX.
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-sm text-zinc-300">
+          <li>
+            <strong className="text-white">I-Lab Logo System:</strong> Code bracket symbol <code>{`{/}`}</code> combined with candle flame motif across dark and light app cards.
+          </li>
+          <li>
+            <strong className="text-white">Social Media Feed Design:</strong> Promotional posters for Informatics Expo, Ghost Runner, World Laboratory Day, and UI/UX Events on Instagram & TikTok.
+          </li>
+          <li>
+            <strong className="text-white">Mobile & Web UI/UX:</strong> Sumba Island travel app, Kekita donation platform, and Wukong game store interfaces.
+          </li>
+        </ul>
+        <div className="pt-6">
+          <h4 className="text-white font-semibold mb-3 text-lg font-sans">
+            Design Stack
+          </h4>
+          <div className="flex flex-wrap gap-2 text-xs font-mono">
+            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Figma</span>
+            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Adobe Photoshop</span>
+            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Adobe Illustrator</span>
+            <span className="px-3 py-1 bg-zinc-900 border border-white/10 rounded text-zinc-300">Brand Systems</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
 ];
 

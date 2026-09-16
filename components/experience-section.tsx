@@ -21,71 +21,139 @@ interface ExperienceItem {
 const EXPERIENCES: ExperienceItem[] = [
   {
     id: "bumi-studio",
-    role: "Unreal Engine Programmer",
+    role: "Junior Game Programmer",
     company: "Bumi Studio",
-    period: "Studio Role",
-    location: "Indonesia",
-    type: "Game Studio",
+    period: "Jan 2026 - Jun 2026",
+    location: "Malang, Indonesia",
+    type: "Game Studio Intern",
     summary:
-      "Engineered gameplay mechanics, character controllers, and diegetic UMG/Slate interfaces in Unreal Engine 5 for studio game projects.",
+      "Collaborated as an Unreal Engine Programmer Intern for 6 months. Developed gameplay mechanics, implemented UI features, built in-game messaging systems, and fixed system bugs.",
     highlights: [
       {
         label: "RESPONSIBILITIES",
         points: [
-          "Developed core gameplay mechanics & character controls (C++ & Blueprint).",
-          "Collaborated with 3D animators & designers on level sequences & interactions.",
+          "Implemented UI features and gameplay-related functionality using Unreal Engine 5.",
+          "Identified and fixed bugs to improve gameplay functionality and project stability.",
         ],
       },
       {
         label: "CONTRIBUTIONS",
         points: [
-          "Built modular combat & interaction frameworks for rapid level iteration.",
-          "Integrated dynamic UMG/Slate interfaces synchronized with gameplay states.",
+          "Developed a messaging mechanic system and integrated it into the main project workflow.",
+          "Collaborated closely with designers and programmers in a team development environment.",
         ],
       },
       {
         label: "KEY OUTCOMES",
         points: [
-          "Delivered stable 60fps gameplay builds with optimized logic subsystems.",
-          "Accelerated studio production pipeline between art assets and technical logic.",
+          "Optimized gameplay interactions and enhanced overall project performance and stability.",
+          "Strengthened team communication, workflow integration, and technical problem-solving.",
         ],
       },
     ],
-    technologies: ["Unreal Engine 5", "C++", "Blueprint", "UMG / Slate", "Gameplay Logic", "Git"],
+    technologies: ["Unreal Engine 5", "Blueprints", "C++", "Gameplay Programming", "UI Implementation", "Git LFS"],
   },
   {
-    id: "consulting",
-    role: "UI/UX & Creative Technologist",
-    company: "Select Client Projects",
-    period: "Freelance & Consulting",
-    location: "Remote",
-    type: "Digital Systems",
+    id: "social-media-coordinator",
+    role: "Social Media Coordinator",
+    company: "Infotech UMM",
+    period: "Jan 2025 - Mar 2026",
+    location: "Malang, Indonesia",
+    type: "Laboratory Role",
     summary:
-      "Architected interactive web apps, modular design systems, and high-fidelity Figma prototypes for creative digital products.",
+      "Directed and created poster feed designs, Instagram stories, and TikTok media content for Informatics Laboratory events.",
     highlights: [
       {
         label: "RESPONSIBILITIES",
         points: [
-          "Translated product requirements into accessible design systems.",
-          "Engineered high-performance React/Next.js interfaces with micro-animations.",
+          "Designed promotional posters and social media feed content for Instagram and TikTok.",
+          "Created consistent feed poster story design assets for informatics event campaigns.",
         ],
       },
       {
         label: "CONTRIBUTIONS",
         points: [
-          "Designed 60+ modular component tokens and layout architectures in Figma.",
-          "Built custom WebGL/Canvas interactive elements for product showcases.",
+          "Produced event design feeds for Informatics Expo, Ghost Runner, and Upgrading UI/UX Event.",
+          "Maintained brand identity standards across laboratory social media channels.",
         ],
       },
       {
         label: "KEY OUTCOMES",
         points: [
-          "Delivered responsive, production-ready frontend codebases with high usability.",
-          "Unified brand visual identity across digital touchpoints.",
+          "Increased social media reach and student participation for informatics events.",
+          "Delivered professional graphic design portfolios for departmental marketing.",
         ],
       },
     ],
-    technologies: ["Figma", "UI/UX Systems", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    technologies: ["Adobe Photoshop", "Adobe Illustrator", "Figma", "Graphic Design", "Social Media"],
+  },
+  {
+    id: "laboratory-assistant",
+    role: "Laboratory Assistant",
+    company: "Infotech UMM",
+    period: "Aug 2023 - Present",
+    location: "Malang, Indonesia",
+    type: "Full Time Academic",
+    summary:
+      "Assisted lecturers in practicum activities across multiple computer science courses, provided technical troubleshooting support to students, and evaluated performance.",
+    highlights: [
+      {
+        label: "RESPONSIBILITIES",
+        points: [
+          "Assisted lecturers during laboratory sessions across multiple computer science courses.",
+          "Provided technical guidance and troubleshooting support to students during practicum sessions.",
+        ],
+      },
+      {
+        label: "CONTRIBUTIONS",
+        points: [
+          "Guided students through complex technical problem-solving and software setup issues.",
+          "Evaluated student performance and provided constructive feedback to enhance learning outcomes.",
+        ],
+      },
+      {
+        label: "KEY OUTCOMES",
+        points: [
+          "Enhanced overall student learning outcomes and practicum session efficiency.",
+          "Built strong communication, mentorship, and technical problem-solving skills.",
+        ],
+      },
+    ],
+    technologies: ["Computer Science", "Technical Guidance", "Troubleshooting", "Evaluation", "Mentorship"],
+  },
+  {
+    id: "game-jams-incubation",
+    role: "Programmer & Game Design",
+    company: "Global Game Jam & Game Seed",
+    period: "Jan 2025 & July 2025",
+    location: "Indonesia",
+    type: "Game Competitions",
+    summary:
+      "Designed core gameplay mechanics and implemented gameplay systems in Unreal Engine during a 48-hour game jam and a 10-day Ministry of Creative Economy incubation program.",
+    highlights: [
+      {
+        label: "RESPONSIBILITIES",
+        points: [
+          "Programmed core gameplay mechanics in UE5 for Bubble Cuts (GGJ 2025) and 9-to-Fight (Game Seed 2025).",
+          "Collaborated with multidisciplinary teams to design game mechanics and deliver playable prototypes.",
+        ],
+      },
+      {
+        label: "CONTRIBUTIONS",
+        points: [
+          "Implemented rhythm action mechanics and top-down comedy shooter interactions.",
+          "Iterated rapidly under strict game jam time limits (48 hours & 10 days).",
+        ],
+      },
+      {
+        label: "KEY OUTCOMES",
+        points: [
+          "Successfully delivered playable game prototypes during competitive incubation events.",
+          "Demonstrated rapid prototyping ability and cross-functional team collaboration.",
+        ],
+      },
+    ],
+    technologies: ["Unreal Engine 5", "Blueprint", "C++", "Game Jam Workflow", "Game Design"],
   },
 ];
 

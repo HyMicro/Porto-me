@@ -129,7 +129,7 @@ export function ContactSection() {
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl text-base sm:text-lg text-zinc-300 font-normal leading-relaxed mb-12"
         >
-          Open for Unreal Engine programming roles, game studio collaborations, UI/UX systems design, and creative engineering partnerships worldwide.
+          Open for Unreal Engine gameplay programming roles, game studio collaborations, UI/UX design projects, and graphic design opportunities.
         </motion.p>
 
         {/* Circular Social Media Icon Buttons */}
