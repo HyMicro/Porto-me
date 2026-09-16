@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef, useCallback } from "react"
 import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -18,57 +18,114 @@ export interface NavBarProps {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name)
+  const isManualScrolling = useRef(false)
+  const manualScrollTimer = useRef<NodeJS.Timeout | null>(null)
 
-  // Synchronize active tab with section currently visible in viewport
-  useEffect(() => {
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const matchedItem = items.find(
-            (item) => item.url === `#${entry.target.id}`
-          )
-          if (matchedItem) {
-            setActiveTab(matchedItem.name)
-          }
-        }
-      })
+  // Calculate current active section based on scroll position
+  const updateActiveSection = useCallback(() => {
+    if (isManualScrolling.current) return
+
+    const scrollPosition = window.scrollY
+    const windowHeight = window.innerHeight
+    const documentHeight = document.documentElement.scrollHeight
+
+    // 1. Top of page check -> Hero/Overview
+    if (scrollPosition < 150) {
+      setActiveTab(items[0].name)
+      return
     }
 
-    const observer = new IntersectionObserver(observerCallback, {
-      rootMargin: "-25% 0px -40% 0px",
-      threshold: 0.1,
-    })
+    // 2. Bottom of page check -> Contact
+    if (windowHeight + scrollPosition >= documentHeight - 100) {
+      const lastItem = items[items.length - 1]
+      setActiveTab(lastItem.name)
+      return
+    }
 
-    items.forEach((item) => {
+    // 3. Viewport center-line matching
+    const viewportCenter = scrollPosition + windowHeight * 0.35
+    let currentActive = items[0].name
+
+    for (const item of items) {
       if (item.url.startsWith("#")) {
         const id = item.url.replace("#", "")
         const el = document.getElementById(id)
-        if (el) observer.observe(el)
+        if (el) {
+          const top = el.offsetTop
+          const height = el.offsetHeight
+          if (viewportCenter >= top && viewportCenter < top + height) {
+            currentActive = item.name
+            break
+          }
+        }
       }
-    })
+    }
 
-    return () => observer.disconnect()
+    setActiveTab(currentActive)
   }, [items])
+
+  useEffect(() => {
+    // Initial calculation & scroll listener
+    updateActiveSection()
+
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (manualScrollTimer.current) clearTimeout(manualScrollTimer.current)
+    }
+  }, [updateActiveSection])
 
   const handleTabClick = (item: NavItem) => {
     setActiveTab(item.name)
+    isManualScrolling.current = true
+
+    if (manualScrollTimer.current) {
+      clearTimeout(manualScrollTimer.current)
+    }
+
     if (item.url.startsWith("#")) {
       const id = item.url.replace("#", "")
       const el = document.getElementById(id)
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" })
+        // Calculate offset to account for fixed navbar padding
+        const offset = 60
+        const bodyRect = document.body.getBoundingClientRect().top
+        const elementRect = el.getBoundingClientRect().top
+        const elementPosition = elementRect - bodyRect
+        const offsetPosition = elementPosition - offset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        })
       }
     }
+
+    // Lock automatic scroll spy for 850ms to allow smooth scroll animation to finish
+    manualScrollTimer.current = setTimeout(() => {
+      isManualScrolling.current = false
+    }, 850)
   }
 
   return (
     <div
       className={cn(
-        "fixed bottom-0 sm:bottom-auto sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:mb-0 sm:pt-6 pointer-events-none",
+        "fixed bottom-4 sm:bottom-auto sm:top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300",
         className,
       )}
     >
-      <div className="flex items-center gap-2 sm:gap-3 bg-black/75 border border-white/15 backdrop-blur-xl py-1 px-1.5 rounded-full shadow-2xl pointer-events-auto">
+      <div className="flex items-center gap-1.5 sm:gap-2 bg-zinc-950/85 border border-white/20 backdrop-blur-2xl py-1.5 px-2 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto">
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name
@@ -78,30 +135,31 @@ export function NavBar({ items, className }: NavBarProps) {
               key={item.name}
               type="button"
               onClick={() => handleTabClick(item)}
+              aria-label={`Navigate to ${item.name}`}
               className={cn(
-                "relative cursor-pointer text-xs sm:text-sm font-semibold px-4 sm:px-6 py-2 rounded-full transition-colors focus:outline-none",
-                "text-zinc-400 hover:text-white",
-                isActive && "bg-white/10 text-white",
+                "relative cursor-pointer text-xs sm:text-sm font-medium px-3.5 sm:px-5 py-2 rounded-full transition-all duration-300 focus:outline-none flex items-center gap-2",
+                isActive
+                  ? "text-white font-bold"
+                  : "text-zinc-400 hover:text-zinc-100 hover:bg-white/5",
               )}
             >
-              <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
-                <Icon size={18} strokeWidth={2.5} />
-              </span>
+              <Icon size={16} className={cn("transition-transform duration-300", isActive ? "scale-110 text-white" : "text-zinc-400")} />
+              <span className="hidden sm:inline font-sans">{item.name}</span>
+
               {isActive && (
                 <motion.div
-                  layoutId="lamp"
-                  className="absolute inset-0 w-full bg-white/10 rounded-full -z-10"
+                  layoutId="active-lamp-pill"
+                  className="absolute inset-0 w-full h-full bg-white/15 rounded-full border border-white/25 shadow-[0_0_16px_rgba(255,255,255,0.3)] -z-10"
                   initial={false}
                   transition={{
-                    duration: 0.22,
-                    ease: [0.16, 1, 0.3, 1],
+                    type: "spring",
+                    stiffness: 380,
+                    damping: 30,
                   }}
                 >
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-white rounded-t-full shadow-[0_0_14px_rgba(255,255,255,0.8)]">
-                    <div className="absolute w-12 h-6 bg-white/20 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-white/20 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-white/30 rounded-full blur-sm top-0 left-2" />
+                  {/* Top Tubelight Glow Ray */}
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-white rounded-t-full shadow-[0_0_12px_rgba(255,255,255,0.9)]">
+                    <div className="absolute w-12 h-4 bg-white/30 rounded-full blur-md -top-1 -left-2" />
                   </div>
                 </motion.div>
               )}
@@ -112,3 +170,4 @@ export function NavBar({ items, className }: NavBarProps) {
     </div>
   )
 }
+
