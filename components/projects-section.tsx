@@ -183,7 +183,7 @@ export function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6"
+          className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-16 gap-4 sm:gap-6"
         >
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
@@ -191,24 +191,26 @@ export function ProjectsSection() {
             </h2>
           </div>
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-zinc-400 mr-2">
+          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            <span className="text-xs font-mono text-zinc-400">
               SWIPE / USE CONTROLS
             </span>
-            <button
-              onClick={handlePrev}
-              className="p-3 rounded-xl border border-white/20 bg-white/[0.08] text-white backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_6px_16px_rgba(0,0,0,0.3)] hover:bg-white/25 hover:border-white/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-              aria-label="Previous project"
-            >
-              <ArrowLeft size={16} />
-            </button>
-            <button
-              onClick={handleNext}
-              className="p-3 rounded-xl border border-white/20 bg-white/[0.08] text-white backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_6px_16px_rgba(0,0,0,0.3)] hover:bg-white/25 hover:border-white/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-              aria-label="Next project"
-            >
-              <ArrowRight size={16} />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handlePrev}
+                className="p-2.5 sm:p-3 rounded-xl border border-white/20 bg-white/[0.08] text-white backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_6px_16px_rgba(0,0,0,0.3)] hover:bg-white/25 hover:border-white/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                aria-label="Previous project"
+              >
+                <ArrowLeft size={16} />
+              </button>
+              <button
+                onClick={handleNext}
+                className="p-2.5 sm:p-3 rounded-xl border border-white/20 bg-white/[0.08] text-white backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_6px_16px_rgba(0,0,0,0.3)] hover:bg-white/25 hover:border-white/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                aria-label="Next project"
+              >
+                <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
         </motion.div>
 
@@ -218,7 +220,7 @@ export function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative min-h-[560px] sm:min-h-[500px] flex items-center justify-center"
+          className="relative min-h-[760px] xs:min-h-[700px] sm:min-h-[540px] md:min-h-[500px] flex items-center justify-center"
         >
           {CASE_STUDIES.map((project, i) => {
             const offset = (i - currentIndex + CASE_STUDIES.length) % CASE_STUDIES.length;
@@ -252,19 +254,28 @@ export function ProjectsSection() {
                   damping: 24,
                 }}
                 whileTap={isTop ? { cursor: "grabbing" } : {}}
-                className={`absolute w-full max-w-4xl p-7 sm:p-10 rounded-2xl border border-white/20 bg-zinc-950/95 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_50px_rgba(0,0,0,0.6)] transition-all ${isTop ? "cursor-grab active:cursor-grabbing hover:border-white/40" : "pointer-events-none"
+                className={`absolute w-full max-w-4xl p-5 sm:p-10 rounded-2xl border border-white/20 bg-zinc-950/95 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_20px_50px_rgba(0,0,0,0.6)] transition-all ${isTop ? "cursor-grab active:cursor-grabbing hover:border-white/40" : "pointer-events-none"
                   }`}
                 style={{
                   transformOrigin: "top center",
                 }}
               >
+                {/* Mobile Swipe Visual Hint */}
+                {isTop && (
+                  <div className="sm:hidden flex items-center justify-center gap-2 py-1.5 px-3.5 mb-4 rounded-full bg-white/10 border border-white/20 text-[11px] font-mono text-zinc-200 w-fit mx-auto shadow-sm backdrop-blur-md">
+                    <span className="text-zinc-400 font-bold">&larr;</span>
+                    <span>SWIPE CARD TO NAVIGATE</span>
+                    <span className="text-zinc-400 font-bold">&rarr;</span>
+                  </div>
+                )}
+
                 {/* Top Card Meta Row */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-5 mb-6">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-sm font-bold text-white px-2.5 py-0.5 rounded-lg bg-white/10 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4 sm:pb-5 sm:mb-6">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <span className="font-mono text-xs sm:text-sm font-bold text-white px-2 sm:px-2.5 py-0.5 rounded-lg bg-white/10 border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)]">
                       {project.index}
                     </span>
-                    <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
+                    <span className="text-[10px] sm:text-xs font-mono tracking-widest text-zinc-400 uppercase">
                       {project.category}
                     </span>
                   </div>
@@ -274,9 +285,9 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Project Details */}
-                <div className="space-y-4 mb-6">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                    <h3 className="text-xl sm:text-3xl font-bold tracking-tight text-white">
                       {project.title}
                     </h3>
                     <span className="text-xs font-mono text-zinc-400">
@@ -284,7 +295,7 @@ export function ProjectsSection() {
                     </span>
                   </div>
 
-                  <p className="text-sm sm:text-base font-mono text-zinc-300">
+                  <p className="text-xs sm:text-base font-mono text-zinc-300">
                     {project.tagline}
                   </p>
 
@@ -294,7 +305,7 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Key Features & Contribution */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 p-4 rounded-xl border border-white/10 bg-white/[0.02]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 sm:mb-6 p-3.5 sm:p-4 rounded-xl border border-white/10 bg-white/[0.02]">
                   <div>
                     <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase block mb-1.5 font-semibold">
                       MY IMPLEMENTATION
@@ -320,11 +331,11 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Tech Badges */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 text-xs font-mono rounded-lg bg-white/[0.06] border border-white/15 text-zinc-200 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.2)]"
+                      className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[11px] sm:text-xs font-mono rounded-lg bg-white/[0.06] border border-white/15 text-zinc-200 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.2)]"
                     >
                       {tech}
                     </span>
@@ -332,13 +343,13 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Card Actions */}
-                <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-white/10">
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono rounded-xl bg-white text-black font-semibold shadow-[inset_0_1px_2px_rgba(255,255,255,0.9),0_8px_16px_rgba(0,0,0,0.3)] hover:bg-zinc-200 hover:scale-[1.02] active:scale-[0.96] transition-all"
+                      className="inline-flex items-center justify-center gap-2 px-3.5 py-2 text-xs font-mono rounded-xl bg-white text-black font-semibold shadow-[inset_0_1px_2px_rgba(255,255,255,0.9),0_8px_16px_rgba(0,0,0,0.3)] hover:bg-zinc-200 hover:scale-[1.02] active:scale-[0.96] transition-all"
                       onClick={(e) => (isTop ? null : e.preventDefault())}
                     >
                       <span>Explore Case Study</span>
@@ -350,7 +361,7 @@ export function ProjectsSection() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono rounded-xl border border-white/20 bg-white/[0.08] text-white backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] active:scale-[0.96] transition-all"
+                      className="inline-flex items-center justify-center gap-2 px-3.5 py-2 text-xs font-mono rounded-xl border border-white/20 bg-white/[0.08] text-white backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] active:scale-[0.96] transition-all"
                       onClick={(e) => (isTop ? null : e.preventDefault())}
                     >
                       <span>GitHub Repo</span>
@@ -364,7 +375,7 @@ export function ProjectsSection() {
         </motion.div>
 
         {/* Step Indicator Dots */}
-        <div className="flex items-center justify-center gap-2 mt-16">
+        <div className="flex items-center justify-center gap-2 mt-8 sm:mt-16 relative z-20">
           {CASE_STUDIES.map((_, idx) => (
             <button
               key={idx}

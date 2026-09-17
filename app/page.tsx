@@ -17,9 +17,8 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black">
-      {/* 1. Loading Screen with Massive Real Typographic Scale */}
+      {/* 1. Minimalist Morph Loading Screen */}
       <LoadingScreen
-        name="AHYAD"
         onComplete={() => setIsLoading(false)}
       />
 
