@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, CheckCircle2, Image as ImageIcon } from "lucide-react";
+import { Briefcase, CheckCircle2, ExternalLink, Gamepad2, Image as ImageIcon } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -24,6 +24,10 @@ interface ExperienceItem {
     points: string[];
   }[];
   technologies: string[];
+  linkUrl?: {
+    url: string;
+    label: string;
+  };
 }
 
 const EXPERIENCES: ExperienceItem[] = [
@@ -35,23 +39,23 @@ const EXPERIENCES: ExperienceItem[] = [
     location: "Malang, Indonesia",
     type: "Game Studio Intern",
     summary:
-      "Collaborated as an Unreal Engine Programmer Intern for 6 months. Developed gameplay mechanics, implemented UI features, built in-game messaging systems, and fixed system bugs.",
+      "Collaborated as an Unreal Engine Programmer Intern for 6 months. Developed gameplay mechanics, implemented UI features, built the Phone Subsystem for '13th Ball: The Nightmare Shift' on Steam, and fixed system bugs.",
     imageUrl:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/Bumi1.png",
     imageCaption:
-      "Unreal Engine 5 Gameplay Subsystem & Phone Messaging UMG UI Architecture at Bumi Studio",
+      "Unreal Engine 5 Gameplay Subsystem & Phone Messaging UMG UI Architecture for 13th Ball: The Nightmare Shift at Bumi Studio",
     highlights: [
       {
         label: "RESPONSIBILITIES",
         points: [
-          "Implemented UI features and gameplay-related functionality using Unreal Engine 5.",
+          "Implemented UI features and gameplay-related functionality in Unreal Engine 5 for 13th Ball: The Nightmare Shift.",
           "Identified and fixed bugs to improve gameplay functionality and project stability.",
         ],
       },
       {
         label: "CONTRIBUTIONS",
         points: [
-          "Developed a messaging mechanic system and integrated it into the main project workflow.",
+          "Developed the Phone Subsystem messaging mechanics and integrated it into 13th Ball: The Nightmare Shift.",
           "Collaborated closely with designers and programmers in a team development environment.",
         ],
       },
@@ -59,11 +63,15 @@ const EXPERIENCES: ExperienceItem[] = [
         label: "KEY OUTCOMES",
         points: [
           "Optimized gameplay interactions and enhanced overall project performance and stability.",
-          "Strengthened team communication, workflow integration, and technical problem-solving.",
+          "Strengthened team communication, workflow integration, and technical problem-solving for Steam launch.",
         ],
       },
     ],
-    technologies: ["Unreal Engine 5", "Blueprints", "C++", "Gameplay Programming", "UI Implementation", "Git LFS"],
+    technologies: ["Unreal Engine 5", "Blueprints", "C++", "Gameplay Programming", "UI Implementation", "Steam Integration"],
+    linkUrl: {
+      url: "https://store.steampowered.com/app/3855500/13th_Ball_The_Nightmare_Shift/",
+      label: "View 13th Ball: The Nightmare Shift on Steam",
+    },
   },
   {
     id: "social-media-coordinator",
@@ -151,7 +159,7 @@ const EXPERIENCES: ExperienceItem[] = [
     summary:
       "Designed core gameplay mechanics and implemented gameplay systems in Unreal Engine during a 48-hour game jam and a 10-day Ministry of Creative Economy incubation program.",
     imageUrl:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/Game Jam25.png",
     imageCaption:
       "Game Seed 2025 Ministry Incubation Sprint & GGJ 2025 48-Hour Rapid Prototyping Jam",
     highlights: [
@@ -315,6 +323,22 @@ export function ExperienceSection() {
                       ))}
                     </div>
                   </div>
+
+                  {/* Optional External Link Button */}
+                  {exp.linkUrl && (
+                    <div className="pt-3 border-t border-white/10">
+                      <a
+                        href={exp.linkUrl.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-mono text-xs font-semibold shadow-md shadow-blue-600/30 transition-all hover:scale-105"
+                      >
+                        <Gamepad2 size={15} />
+                        <span>{exp.linkUrl.label}</span>
+                        <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             </motion.div>

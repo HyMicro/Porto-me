@@ -2,7 +2,9 @@
 
 import type { DialogRootActions } from "@base-ui/react/dialog";
 import {
+  ArrowUpRight,
   Clock,
+  ExternalLink,
   Eye,
   Gamepad2,
   Layers,
@@ -208,11 +210,11 @@ const ITEMS: CardItem[] = [
     id: "card-9-to-fight",
     title: "9 - TO - FIGHT",
     image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/Game Seed25.png",
     images: [
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/Game Seed25.png",
+      "/PNG/image 34.png",
+      "/PNG/image 31.png",
     ],
     stats: [
       { icon: <Gamepad2 className="h-3.5 w-3.5" />, label: "UE5 2.5D" },
@@ -264,11 +266,11 @@ const ITEMS: CardItem[] = [
     id: "card-bubble-cuts",
     title: "BUBBLE CUTS",
     image:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/bubble1.png",
     images: [
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/bubble1.png",
+      "/PNG/bubble2.png",
+      "/PNG/Game Jam25.png",
     ],
     stats: [
       { icon: <Gamepad2 className="h-3.5 w-3.5" />, label: "Rhythm Action" },
@@ -282,6 +284,26 @@ const ITEMS: CardItem[] = [
         <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
           Completed in just 48 hours during Global Game Jam 2025! Bubi fights monsters with her secret weapon: bubble breathing technique! Players press spacebar in sync to expand bubbles and strike incoming monsters.
         </p>
+
+        {/* itch.io Store Direct CTA Banner */}
+        <div className="p-4 rounded-xl border border-red-500/30 bg-red-950/40 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg shadow-red-950/50">
+          <div className="space-y-1">
+            <span className="text-[10px] font-mono text-red-400 font-bold uppercase tracking-wider block">OFFICIAL ITCH.IO PAGE</span>
+            <p className="text-sm text-white font-bold">Bubble Cuts - GGJ 2025</p>
+            <p className="text-xs text-zinc-400">Playable Web & Desktop Release on itch.io</p>
+          </div>
+          <a
+            href="https://spydev.itch.io/bubble-cuts"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-mono text-xs font-bold shadow-md shadow-red-600/30 transition-all hover:scale-105"
+          >
+            <Gamepad2 className="h-4 w-4" />
+            <span>Play on itch.io</span>
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+
         <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
           <li className="leading-relaxed">
             <strong className="text-white">Precision Rhythm Windows:</strong> Programmed spacebar input timing detection linked to audio beats and visual expansion cues.
@@ -314,26 +336,46 @@ const ITEMS: CardItem[] = [
   },
   {
     id: "card-phone-mechanics",
-    title: "PHONE SUBSYSTEM",
+    title: "13TH BALL: THE NIGHTMARE SHIFT",
     image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/13ball1.png",
     images: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/13ball1.png",
+      "/PNG/13ball2.png",
+      "/PNG/13ball3.png",
     ],
     stats: [
       { icon: <Terminal className="h-3.5 w-3.5" />, label: "C++ & Blueprint" },
       { icon: <Layers className="h-3.5 w-3.5" />, label: "UMG / Slate" },
-      { icon: <Zap className="h-3.5 w-3.5" />, label: "Message Struct" },
+      { icon: <Gamepad2 className="h-3.5 w-3.5" />, label: "13th Ball on Steam" },
     ],
     description:
-      "Simulated in-game smartphone system featuring messaging, inbox panel, and real-time notification alerts.",
+      "Simulated in-game smartphone subsystem engineered for '13th Ball: The Nightmare Shift' on Steam, featuring messaging, inbox panel, and real-time alerts.",
     content: (
       <div className="space-y-5 text-zinc-300 leading-relaxed font-sans">
         <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
-          Engineered a comprehensive &lsquo;Phone&rsquo; mechanic simulating a smartphone inside Unreal Engine 5 at Bumi Studio. Features dynamic messaging, inbox list views, and real-time pop-up notification alerts.
+          Engineered a comprehensive &lsquo;Phone&rsquo; mechanic simulating a smartphone inside Unreal Engine 5 at Bumi Studio for horror game <strong>13th Ball: The Nightmare Shift</strong>. Features dynamic messaging, inbox list views, and real-time pop-up notification alerts.
         </p>
+
+        {/* Steam Store Direct CTA Banner */}
+        <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-950/40 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg shadow-blue-950/50">
+          <div className="space-y-1">
+            <span className="text-[10px] font-mono text-blue-400 font-bold uppercase tracking-wider block">OFFICIAL STEAM STORE PAGE</span>
+            <p className="text-sm text-white font-bold">13th Ball: The Nightmare Shift</p>
+            <p className="text-xs text-zinc-400">Developed & Published by Bumi Studio • Available on Steam</p>
+          </div>
+          <a
+            href="https://store.steampowered.com/app/3855500/13th_Ball_The_Nightmare_Shift/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-mono text-xs font-bold shadow-md shadow-blue-600/30 transition-all hover:scale-105"
+          >
+            <Gamepad2 className="h-4 w-4" />
+            <span>Open Steam Store</span>
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+
         <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
           <li className="leading-relaxed">
             <strong className="text-white">Message Struct Data Architecture:</strong> Incoming messages are encapsulated in a custom C++ struct containing Sender Name, Message Body, Timestamp, and Read Status.
@@ -377,11 +419,11 @@ const ITEMS: CardItem[] = [
     id: "card-last-breath",
     title: "LAST BREATH PROTOCOL",
     image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/gamejam26.png",
     images: [
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/gamejam26.png",
+      "/PNG/gamejam261.png",
+      "/PNG/gamejam262.png",
     ],
     stats: [
       { icon: <Mountain className="h-3.5 w-3.5" />, label: "Sci-Fi Survival" },
@@ -429,11 +471,11 @@ const ITEMS: CardItem[] = [
     id: "card-water-simulation",
     title: "WATER SIMULATION",
     image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/water.png",
     images: [
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1200&auto=format&fit=crop",
+      "/PNG/water.png",
+      "/PNG/image 943.png",
+      "/PNG/image 942.png",
     ],
     stats: [
       { icon: <Layers className="h-3.5 w-3.5" />, label: "UE5 Shader" },
@@ -447,6 +489,25 @@ const ITEMS: CardItem[] = [
         <p className="text-sm sm:text-base text-zinc-200 leading-relaxed">
           Created a stylised water material in Unreal Engine 5 using a complex material graph to produce a dynamic and immersive visual representation of water.
         </p>
+
+        {/* LinkedIn Video Demo CTA Banner */}
+        <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-950/40 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg shadow-blue-950/50">
+          <div className="space-y-1">
+            <span className="text-[10px] font-mono text-blue-400 font-bold uppercase tracking-wider block">DEMO & TECHNICAL SHOWCASE</span>
+            <p className="text-sm text-white font-bold">Stylized Water Shader - Perlin Noise</p>
+            <p className="text-xs text-zinc-400">Watch video breakdown and material graph preview on LinkedIn</p>
+          </div>
+          <a
+            href="https://www.linkedin.com/posts/ahyad_unrealengine-perlinnoise-stylized-activity-7399864967447117825-XnJN?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEV57xUBCFVvoH_X41yxog6vkCVOp9nlt4E"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-mono text-xs font-bold shadow-md shadow-blue-600/30 transition-all hover:scale-105"
+          >
+            <Eye className="h-4 w-4" />
+            <span>Watch on LinkedIn</span>
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
         <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-zinc-300">
           <li className="leading-relaxed">
             <strong className="text-white">Custom Flow Map Panning:</strong> Vector direction flow map movement creating realistic liquid surface panning.

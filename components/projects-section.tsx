@@ -20,6 +20,7 @@ interface ProjectCaseStudy {
   outcome: string;
   githubUrl?: string;
   liveUrl?: string;
+  steamUrl?: string;
 }
 
 const CASE_STUDIES: ProjectCaseStudy[] = [
@@ -61,27 +62,28 @@ const CASE_STUDIES: ProjectCaseStudy[] = [
     technologies: ["Unreal Engine 5", "Blueprint", "Rhythm Mechanics", "Game Jam Workflow", "Game Design"],
     outcome: "Completed and submitted a fully playable rhythm game prototype within 48 hours.",
     githubUrl: "https://github.com/HyMicro",
-    liveUrl: "https://github.com/HyMicro",
+    liveUrl: "https://spydev.itch.io/bubble-cuts",
   },
   {
     id: "phone-mechanics",
     index: "03",
-    title: "PHONE SUBSYSTEM MECHANICS",
+    title: "13TH BALL: THE NIGHTMARE SHIFT",
     category: "GAMEPLAY SYSTEM & UI",
     role: "Programmer Unreal Engine @ Bumi Studio",
-    tagline: "Simulated smartphone mechanics featuring messaging, inbox panel, and real-time notifications.",
+    tagline: "Simulated smartphone subsystem engineered for horror game '13th Ball: The Nightmare Shift' on Steam.",
     objective:
-      "Develop an interconnected in-game smartphone system handling dynamic incoming character messages, inbox lists, and preview cards within Unreal Engine.",
+      "Develop an interconnected in-game smartphone system handling dynamic incoming character messages, inbox lists, and preview cards within Unreal Engine 5 for 13th Ball: The Nightmare Shift.",
     implementation: [
       "Designed Message Struct data architecture containing sender, content, timestamp, and read status.",
       "Created dynamic Message List array as the primary data source for real-time UI data binding.",
       "Built 3 interconnected UI modules: Notification Alert, Inbox Panel list view, and Message Preview Card.",
     ],
     keyFeatures: ["Message Struct Architecture", "Notification System", "Interactive Inbox Panel", "Message Content Preview"],
-    technologies: ["Unreal Engine 5", "C++", "Blueprint", "UMG / Slate", "Data Structs"],
-    outcome: "Integrated into studio project workflow, establishing a reusable, modular in-game smartphone communication framework.",
+    technologies: ["Unreal Engine 5", "C++", "Blueprint", "UMG / Slate", "Steam Integration"],
+    outcome: "Integrated into '13th Ball: The Nightmare Shift' studio workflow, now live on Steam.",
     githubUrl: "https://github.com/HyMicro",
-    liveUrl: "https://github.com/HyMicro",
+    steamUrl: "https://store.steampowered.com/app/3855500/13th_Ball_The_Nightmare_Shift/",
+    liveUrl: "https://store.steampowered.com/app/3855500/13th_Ball_The_Nightmare_Shift/",
   },
   {
     id: "last-breath-protocol",
@@ -121,7 +123,7 @@ const CASE_STUDIES: ProjectCaseStudy[] = [
     technologies: ["Unreal Engine 5", "HLSL / Material Editor", "Flow Maps", "Depth Color", "Technical Art"],
     outcome: "Delivered a visually striking, performance-optimized stylised water material with full runtime parameter customization.",
     githubUrl: "https://github.com/HyMicro",
-    liveUrl: "https://github.com/HyMicro",
+    liveUrl: "https://www.linkedin.com/posts/ahyad_unrealengine-perlinnoise-stylized-activity-7399864967447117825-XnJN?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEV57xUBCFVvoH_X41yxog6vkCVOp9nlt4E",
   },
   {
     id: "ui-ux-branding",
@@ -344,6 +346,19 @@ export function ProjectsSection() {
 
                 {/* Card Actions */}
                 <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-3 sm:pt-4 border-t border-white/10">
+                  {project.steamUrl && (
+                    <a
+                      href={project.steamUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-3.5 py-2 text-xs font-mono rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-[0_4px_14px_rgba(37,99,235,0.4)] hover:from-blue-500 hover:to-indigo-500 hover:scale-[1.02] active:scale-[0.96] transition-all"
+                      onClick={(e) => (isTop ? null : e.preventDefault())}
+                    >
+                      <Gamepad2 size={14} />
+                      <span>View on Steam</span>
+                      <ExternalLink size={13} />
+                    </a>
+                  )}
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
@@ -356,7 +371,7 @@ export function ProjectsSection() {
                       <ArrowUpRight size={13} />
                     </a>
                   )}
-                  {project.liveUrl && (
+                  {project.liveUrl && !project.steamUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
@@ -364,7 +379,19 @@ export function ProjectsSection() {
                       className="inline-flex items-center justify-center gap-2 px-3.5 py-2 text-xs font-mono rounded-xl border border-white/20 bg-white/[0.08] text-white backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)] hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] active:scale-[0.96] transition-all"
                       onClick={(e) => (isTop ? null : e.preventDefault())}
                     >
-                      <span>GitHub Repo</span>
+                      <span>
+                        {project.liveUrl.includes("figma.com")
+                          ? "View Figma"
+                          : project.liveUrl.includes("steampowered.com")
+                          ? "Steam Store"
+                          : project.liveUrl.includes("itch.io")
+                          ? "Play on itch.io"
+                          : project.liveUrl.includes("linkedin.com")
+                          ? "LinkedIn Post"
+                          : project.liveUrl.includes("github.com")
+                          ? "GitHub Repo"
+                          : "Live Link"}
+                      </span>
                       <ExternalLink size={13} />
                     </a>
                   )}
