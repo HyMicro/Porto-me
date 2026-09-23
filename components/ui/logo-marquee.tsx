@@ -39,11 +39,11 @@ export function LogoMarquee({
   const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section className={`relative w-full py-12 sm:py-16 overflow-hidden border-y border-white/10 bg-black/60 backdrop-blur-xl ${className}`}>
+    <section className={`relative w-full py-12 sm:py-16 overflow-hidden border-y border-black/10 dark:border-white/10 bg-zinc-100/80 dark:bg-black/60 backdrop-blur-xl ${className}`}>
       {/* Optional Section Micro Header */}
       {title && (
         <div className="max-w-6xl mx-auto px-6 mb-8 text-center">
-          <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.3em] text-zinc-400 uppercase">
+          <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.3em] text-zinc-600 dark:text-zinc-400 uppercase">
             {title}
           </span>
         </div>
@@ -62,7 +62,7 @@ export function LogoMarquee({
               key={`${logo.name}-${index}`}
               className="flex items-center gap-3 shrink-0 px-3 py-2 rounded-xl transition-all duration-300 group/item hover:scale-110 cursor-pointer"
             >
-              <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center filter grayscale contrast-125 opacity-60 group-hover/item:grayscale-0 group-hover/item:opacity-100 group-hover/item:drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] transition-all duration-300">
+              <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center filter dark:invert-0 grayscale opacity-70 group-hover/item:grayscale-0 group-hover/item:opacity-100 transition-all duration-300">
                 <Image
                   src={logo.src}
                   alt={logo.name}
@@ -71,7 +71,7 @@ export function LogoMarquee({
                   className="object-contain w-8 h-8 sm:w-10 sm:h-10"
                 />
               </div>
-              <span className="text-xs sm:text-sm font-mono text-zinc-400 group-hover/item:text-white transition-colors duration-200 whitespace-nowrap">
+              <span className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400 group-hover/item:text-zinc-950 dark:group-hover/item:text-white transition-colors duration-200 whitespace-nowrap">
                 {logo.name}
               </span>
             </div>

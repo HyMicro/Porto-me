@@ -105,7 +105,7 @@ export function MorphingDialog({ items }: MorphingDialogProps = {}) {
                   hidden={false}
                 >
                   <DialogPopup
-                    className="relative w-full max-w-4xl max-h-[90vh] sm:max-h-[85vh] flex flex-col overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 shadow-2xl my-auto"
+                    className="relative w-full max-w-4xl max-h-[90vh] sm:max-h-[85vh] flex flex-col overflow-hidden rounded-2xl border border-black/15 dark:border-white/20 bg-white dark:bg-zinc-950 text-zinc-950 dark:text-white shadow-2xl my-auto"
                     hidden={false}
                     render={
                       <motion.div

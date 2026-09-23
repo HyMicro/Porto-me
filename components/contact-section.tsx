@@ -95,17 +95,17 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative z-20 py-28 sm:py-36 px-6 sm:px-8 border-t border-white/10 overflow-hidden bg-black text-white"
+      className="relative z-20 py-28 sm:py-36 px-6 sm:px-8 border-t border-black/10 dark:border-white/10 overflow-hidden bg-zinc-50 dark:bg-black text-zinc-950 dark:text-white transition-colors duration-500"
     >
       {/* Background Connecting Ambient Light Beam */}
       <div
-        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-64 bg-[radial-gradient(ellipse_75%_55%_at_50%_100%,rgba(255,255,255,0.09)_0%,transparent_70%)] blur-3xl pointer-events-none z-0"
+        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-64 bg-[radial-gradient(ellipse_75%_55%_at_50%_100%,rgba(0,0,0,0.04)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_75%_55%_at_50%_100%,rgba(255,255,255,0.09)_0%,transparent_70%)] blur-3xl pointer-events-none z-0"
         aria-hidden="true"
       />
 
       {/* Ambient center beam */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-[radial-gradient(circle,rgba(255,255,255,0.025)_0%,transparent_70%)] pointer-events-none z-0"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-96 h-96 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.025)_0%,transparent_70%)] pointer-events-none z-0"
         aria-hidden="true"
       />
 
@@ -116,7 +116,7 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-950 dark:text-white mb-6"
         >
           Get in Touch
         </motion.h2>
@@ -127,7 +127,7 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-xl text-base sm:text-lg text-zinc-300 font-normal leading-relaxed mb-12"
+          className="max-w-xl text-base sm:text-lg text-zinc-700 dark:text-zinc-300 font-normal leading-relaxed mb-12"
         >
           Open for Unreal Engine gameplay programming roles, game studio collaborations, UI/UX design projects, and graphic design opportunities.
         </motion.p>
@@ -150,12 +150,12 @@ export function ContactSection() {
                 target={isMailto ? undefined : "_blank"}
                 rel={isMailto ? undefined : "noopener noreferrer"}
                 aria-label={link.name}
-                className="group relative z-40 pointer-events-auto flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/20 bg-white/[0.08] text-zinc-200 backdrop-blur-xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-110 hover:shadow-[0_12px_28px_rgba(255,255,255,0.3)] active:scale-95 active:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_8px_20px_rgba(0,0,0,0.4)] cursor-pointer"
+                className="group relative z-40 pointer-events-auto flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-black/15 dark:border-white/20 bg-black/5 dark:bg-white/[0.08] text-zinc-800 dark:text-zinc-200 backdrop-blur-xl transition-all duration-300 hover:bg-zinc-950 hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-zinc-950 dark:hover:border-white hover:scale-110 shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_8px_20px_rgba(0,0,0,0.4)] cursor-pointer"
               >
                 <Icon size={22} className="transition-transform duration-300 group-hover:scale-110" />
 
                 {/* Hover Tooltip */}
-                <span className="pointer-events-none absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-mono tracking-widest text-zinc-400 whitespace-nowrap uppercase">
+                <span className="pointer-events-none absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-mono tracking-widest text-zinc-600 dark:text-zinc-400 whitespace-nowrap uppercase">
                   {link.name}
                 </span>
               </a>
@@ -169,11 +169,11 @@ export function ContactSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.45 }}
-          className="mt-16 pt-8 border-t border-white/10 w-full max-w-sm relative z-30 pointer-events-auto"
+          className="mt-16 pt-8 border-t border-black/10 dark:border-white/10 w-full max-w-sm relative z-30 pointer-events-auto"
         >
           <a
             href="mailto:izzaahyad03@gmail.com"
-            className="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-zinc-300 hover:text-white transition-colors cursor-pointer relative z-30 pointer-events-auto p-2"
+            className="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer relative z-30 pointer-events-auto p-2"
           >
             <span>izzaahyad03@gmail.com</span>
             <ArrowUpRight size={13} />

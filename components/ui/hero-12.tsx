@@ -118,13 +118,13 @@ export function Hero12({
 
   const titleElement = title && (
     <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-      <h1 className={cn("font-normal tracking-tight text-white", vs.title, titleClassName)}>
+      <h1 className={cn("font-normal tracking-tight text-zinc-950 dark:text-white", vs.title, titleClassName)}>
         <Balancer>{title}</Balancer>
       </h1>
       {established && (
         <span
           className={cn(
-            "font-medium tracking-widest text-white/70 uppercase",
+            "font-medium tracking-widest text-zinc-600 dark:text-white/70 uppercase",
             vs.established,
           )}
         >
@@ -135,7 +135,7 @@ export function Hero12({
   );
 
   const descriptionElement = description && (
-    <p className={cn("leading-relaxed text-white/80", vs.description)}>
+    <p className={cn("leading-relaxed text-zinc-700 dark:text-white/80", vs.description)}>
       <Balancer>{description}</Balancer>
     </p>
   );

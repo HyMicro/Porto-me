@@ -49,10 +49,10 @@ const SKILL_CATEGORIES: SkillCategory[] = [
 
 export function AboutSkillsSection() {
   return (
-    <section id="about" className="relative py-20 sm:py-28 px-4 sm:px-8 border-t border-white/10 overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-28 px-4 sm:px-8 border-t border-black/10 dark:border-white/10 overflow-hidden">
       {/* Background ambient spotlight */}
       <div
-        className="absolute top-1/3 right-0 w-80 h-80 bg-[radial-gradient(circle,rgba(255,255,255,0.02)_0%,transparent_70%)] pointer-events-none"
+        className="absolute top-1/3 right-0 w-80 h-80 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.02)_0%,transparent_70%)] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -65,14 +65,14 @@ export function AboutSkillsSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-12 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4 uppercase">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white mb-4 uppercase">
             ABOUT & TECHNICAL SKILLS
           </h2>
-          <blockquote className="border-l-2 border-white/30 pl-4 py-1 text-sm sm:text-base text-zinc-300 italic font-normal leading-relaxed mb-6">
+          <blockquote className="border-l-2 border-zinc-400 dark:border-white/30 pl-4 py-1 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 italic font-normal leading-relaxed mb-6">
             &ldquo;Hi, I&apos;m Ahyad Izzuddin Syuhaiba, an Informatics student passionate about game development. Passionate Unreal Engine Gameplay Programmer with experience developing gameplay systems, UI mechanics, and interactive experiences. I enjoy building scalable game mechanics and collaborating with multidisciplinary teams to deliver immersive gameplay.&rdquo;
           </blockquote>
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
-            Computer Science graduate with experience in <span className="text-zinc-200 font-medium">Unreal Engine development</span>, <span className="text-zinc-200 font-medium">UI/UX design</span>, and <span className="text-zinc-200 font-medium">graphic design</span>. Skilled in combining technical and creative skills to develop functional, intuitive, and engaging digital experiences.
+          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
+            Computer Science graduate with experience in <span className="text-zinc-900 dark:text-zinc-200 font-medium">Unreal Engine development</span>, <span className="text-zinc-900 dark:text-zinc-200 font-medium">UI/UX design</span>, and <span className="text-zinc-900 dark:text-zinc-200 font-medium">graphic design</span>. Skilled in combining technical and creative skills to develop functional, intuitive, and engaging digital experiences.
           </p>
         </motion.div>
 
@@ -87,23 +87,23 @@ export function AboutSkillsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative p-6 sm:p-7 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-white/25 transition-all duration-300 flex flex-col justify-between"
+                className="group relative p-6 sm:p-7 rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.02] backdrop-blur-xl shadow-sm dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-black/20 dark:hover:border-white/25 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Top Bar */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+                  <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg border border-white/15 bg-white/[0.05] text-white">
+                      <div className="p-2 rounded-lg border border-black/10 dark:border-white/15 bg-black/5 dark:bg-white/[0.05] text-zinc-900 dark:text-white">
                         <Icon size={18} />
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">{cat.title}</h3>
+                      <h3 className="text-base sm:text-lg font-bold text-zinc-950 dark:text-white tracking-tight">{cat.title}</h3>
                     </div>
-                    <span className="text-[9px] font-mono tracking-wider text-zinc-400 uppercase px-2 py-0.5 rounded bg-white/[0.04] border border-white/10">
+                    <span className="text-[9px] font-mono tracking-wider text-zinc-600 dark:text-zinc-400 uppercase px-2 py-0.5 rounded bg-black/5 dark:bg-white/[0.04] border border-black/10 dark:border-white/10">
                       {cat.badge}
                     </span>
                   </div>
 
-                  <p className="text-xs text-zinc-400 font-mono mb-5 leading-relaxed">
+                  <p className="text-xs text-zinc-600 dark:text-zinc-400 font-mono mb-5 leading-relaxed">
                     {cat.description}
                   </p>
                 </div>
@@ -113,7 +113,7 @@ export function AboutSkillsSection() {
                   {cat.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 text-[11px] font-mono rounded-md bg-white/[0.04] border border-white/10 text-zinc-300 group-hover:border-white/20 transition-colors"
+                      className="px-2.5 py-1 text-[11px] font-mono rounded-md bg-black/5 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-zinc-800 dark:text-zinc-300 group-hover:border-black/20 dark:group-hover:border-white/20 transition-colors"
                     >
                       {skill}
                     </span>

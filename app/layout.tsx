@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Neuton } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import BlindPullToggle from "@/components/ui/blind-pull-toggle";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -46,8 +47,9 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col bg-black text-zinc-100 selection:bg-white selection:text-black overflow-x-hidden"
+        className="min-h-full flex flex-col bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black overflow-x-hidden transition-colors duration-500"
       >
+        <BlindPullToggle />
         {children}
       </body>
     </html>

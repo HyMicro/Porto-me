@@ -16,7 +16,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black">
+    <div className="relative min-h-screen bg-zinc-50 text-zinc-950 dark:bg-black dark:text-white transition-colors duration-500 selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
       {/* 1. Minimalist Morph Loading Screen */}
       <LoadingScreen
         onComplete={() => setIsLoading(false)}

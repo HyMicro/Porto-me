@@ -193,11 +193,11 @@ export function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="relative py-20 sm:py-28 px-4 sm:px-8 border-t border-white/10 overflow-hidden"
+      className="relative py-20 sm:py-28 px-4 sm:px-8 border-t border-black/10 dark:border-white/10 overflow-hidden"
     >
       {/* Background spotlight */}
       <div
-        className="absolute top-1/2 left-0 w-80 h-80 bg-[radial-gradient(circle,rgba(255,255,255,0.02)_0%,transparent_70%)] pointer-events-none"
+        className="absolute top-1/2 left-0 w-80 h-80 bg-[radial-gradient(circle,rgba(0,0,0,0.03)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.02)_0%,transparent_70%)] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -210,12 +210,12 @@ export function ExperienceSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl mb-12 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white mb-4">
             EXPERIENCE & TIMELINE
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
             Studio contributions and technical consulting structured by{" "}
-            <span className="text-zinc-200 font-medium">Role &rarr; Contribution &rarr; Outcome</span>.
+            <span className="text-zinc-900 dark:text-zinc-200 font-medium">Role &rarr; Contribution &rarr; Outcome</span>.
           </p>
         </motion.div>
 
@@ -231,37 +231,37 @@ export function ExperienceSection() {
             >
               <AccordionItem
                 value={exp.id}
-                className="rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-white/25 transition-all duration-300 px-5 sm:px-8 py-2 overflow-hidden"
+                className="rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.02] backdrop-blur-xl shadow-sm dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-black/20 dark:hover:border-white/25 transition-all duration-300 px-5 sm:px-8 py-2 overflow-hidden"
               >
                 {/* Accordion Trigger (Header Bar) */}
                 <AccordionTrigger className="py-4 hover:no-underline flex flex-wrap items-center justify-between text-left gap-3 group">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-zinc-200 transition-colors">
+                      <h3 className="text-lg sm:text-xl font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors">
                         {exp.role}
                       </h3>
                       <span className="text-xs font-mono text-zinc-500">@</span>
-                      <span className="text-sm sm:text-base font-semibold text-zinc-200">
+                      <span className="text-sm sm:text-base font-semibold text-zinc-800 dark:text-zinc-200">
                         {exp.company}
                       </span>
                     </div>
-                    <span className="inline-block text-[11px] font-mono text-zinc-400 bg-white/[0.04] px-2.5 py-0.5 rounded border border-white/10 w-fit">
+                    <span className="inline-block text-[11px] font-mono text-zinc-600 dark:text-zinc-400 bg-black/5 dark:bg-white/[0.04] px-2.5 py-0.5 rounded border border-black/10 dark:border-white/10 w-fit">
                       {exp.type}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-3 self-end sm:self-auto">
-                    <span className="text-[11px] font-mono text-zinc-400 bg-white/[0.04] px-3 py-1 rounded-md border border-white/10">
+                    <span className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 bg-black/5 dark:bg-white/[0.04] px-3 py-1 rounded-md border border-black/10 dark:border-white/10">
                       {exp.period}
                     </span>
                   </div>
                 </AccordionTrigger>
 
                 {/* Accordion Content (Full Card Details + Highlights + Image + Tech Stack) */}
-                <AccordionContent className="pt-2 pb-6 space-y-6 text-zinc-300 border-t border-white/10 font-sans">
+                <AccordionContent className="pt-2 pb-6 space-y-6 text-zinc-700 dark:text-zinc-300 border-t border-black/10 dark:border-white/10 font-sans">
                   {/* Summary */}
                   <div className="pt-3">
-                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
                       {exp.summary}
                     </p>
                   </div>
@@ -271,15 +271,15 @@ export function ExperienceSection() {
                     {exp.highlights.map((hl, hIdx) => (
                       <div
                         key={hIdx}
-                        className="p-4 rounded-lg border border-white/5 bg-white/[0.015] flex flex-col"
+                        className="p-4 rounded-lg border border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.015] flex flex-col"
                       >
-                        <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-semibold mb-2.5">
+                        <span className="text-[10px] font-mono tracking-widest text-zinc-500 dark:text-zinc-400 uppercase font-semibold mb-2.5">
                           {hl.label}
                         </span>
-                        <ul className="space-y-2 text-[11px] sm:text-xs text-zinc-300 leading-relaxed">
+                        <ul className="space-y-2 text-[11px] sm:text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
                           {hl.points.map((pt, pIdx) => (
                             <li key={pIdx} className="flex items-start gap-1.5">
-                              <span className="text-zinc-500 font-mono mt-0.5">•</span>
+                              <span className="text-zinc-400 dark:text-zinc-500 font-mono mt-0.5">•</span>
                               <span>{pt}</span>
                             </li>
                           ))}
@@ -290,19 +290,19 @@ export function ExperienceSection() {
 
                   {/* Visual Image Deliverable Artifact */}
                   <div className="space-y-2">
-                    <span className="text-[11px] font-mono text-zinc-400 flex items-center gap-2">
-                      <ImageIcon className="h-3.5 w-3.5 text-zinc-400" />
+                    <span className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 flex items-center gap-2">
+                      <ImageIcon className="h-3.5 w-3.5 text-zinc-500 dark:text-zinc-400" />
                       <span>Technical Deliverables & Visual Artifact Showcase</span>
                     </span>
-                    <div className="relative rounded-xl overflow-hidden border border-white/15 bg-zinc-950 shadow-2xl group">
+                    <div className="relative rounded-xl overflow-hidden border border-black/10 dark:border-white/15 bg-zinc-100 dark:bg-zinc-950 shadow-lg group">
                       <img
                         src={exp.imageUrl}
                         alt={exp.imageCaption}
                         className="w-full h-52 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                        <span className="text-[11px] font-mono text-zinc-200 bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15 shadow-md">
+                        <span className="text-[11px] font-mono text-zinc-900 dark:text-zinc-200 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-black/15 dark:border-white/15 shadow-md">
                           {exp.imageCaption}
                         </span>
                       </div>
@@ -311,12 +311,12 @@ export function ExperienceSection() {
 
                   {/* Tech Stack Pills */}
                   <div className="pt-2">
-                    <span className="text-[10px] font-mono text-zinc-500 block mb-2 uppercase tracking-wider">Technologies Used</span>
+                    <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-500 block mb-2 uppercase tracking-wider">Technologies Used</span>
                     <div className="flex flex-wrap gap-1.5">
                       {exp.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2.5 py-1 text-[11px] font-mono rounded bg-white/[0.04] border border-white/10 text-zinc-300"
+                          className="px-2.5 py-1 text-[11px] font-mono rounded bg-black/5 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-zinc-800 dark:text-zinc-300"
                         >
                           {tech}
                         </span>

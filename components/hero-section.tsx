@@ -111,14 +111,14 @@ export function HeroSection() {
   const [showOriginal, setShowOriginal] = useState<boolean>(false);
 
   return (
-    <div id="hero" className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-black text-white selection:bg-white selection:text-black">
+    <div id="hero" className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-zinc-50 text-zinc-950 dark:bg-black dark:text-white transition-colors duration-500 selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
       {/* 1. Full-Bleed Electric Gaze Canvas Background Layer featuring menew.jpeg */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {!showOriginal ? (
           <ElectricGazeCanvas
             imageSrc="/menew.jpeg"
             params={PRESETS[activePreset]?.params}
-            className="w-full h-full object-cover opacity-80 transition-opacity duration-700 pointer-events-auto"
+            className="w-full h-full object-cover opacity-80 dark:opacity-80 transition-opacity duration-700 pointer-events-auto"
             interactiveLight={true}
           />
         ) : (
@@ -127,14 +127,14 @@ export function HeroSection() {
             alt="Ahyad Izzuddin Syuhaiba"
             fill
             priority
-            className="object-cover object-center opacity-75 transition-opacity duration-700"
+            className="object-cover object-center opacity-75 dark:opacity-75 transition-opacity duration-700"
             sizes="100vw"
           />
         )}
 
         {/* Ambient Radial & Vignette Overlays for Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30 pointer-events-none z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.85)_95%)] pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-50 via-zinc-50/60 to-transparent dark:from-black dark:via-black/50 dark:to-black/30 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(244,244,245,0.7)_95%)] dark:bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.85)_95%)] pointer-events-none z-10" />
       </div>
 
       {/* 2. Hero12 Integrated Foreground Layout */}
@@ -165,8 +165,8 @@ export function HeroSection() {
                   setShowOriginal(false);
                 }}
                 className={`px-3.5 py-1.5 text-[11px] font-mono rounded-full border transition-all duration-300 cursor-pointer ${activePreset === key && !showOriginal
-                    ? "bg-zinc-900 border-white text-white shadow-[0_0_16px_rgba(255,255,255,0.4)] font-semibold"
-                    : "bg-zinc-900/80 border-zinc-700/80 text-zinc-400 hover:text-white hover:border-zinc-500"
+                    ? "bg-zinc-900 border-zinc-900 text-white dark:bg-white dark:border-white dark:text-black shadow-md font-semibold"
+                    : "bg-white/80 dark:bg-zinc-900/80 border-black/10 dark:border-zinc-700/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-black/30 dark:hover:border-zinc-500"
                   }`}
               >
                 {item.label}
@@ -176,8 +176,8 @@ export function HeroSection() {
             <button
               onClick={() => setShowOriginal(!showOriginal)}
               className={`px-3.5 py-1.5 text-[11px] font-mono rounded-full border flex items-center gap-1.5 transition-all duration-300 cursor-pointer ${showOriginal
-                ? "bg-white text-black border-white font-bold shadow-[0_0_16px_rgba(255,255,255,0.4)]"
-                : "bg-zinc-900/80 border-zinc-700/80 text-zinc-400 hover:text-white hover:border-zinc-500"
+                ? "bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black dark:border-white font-bold shadow-md"
+                : "bg-white/80 dark:bg-zinc-900/80 border-black/10 dark:border-zinc-700/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-black/30 dark:hover:border-zinc-500"
                 }`}
             >
               <Eye size={12} /> {showOriginal ? "Canvas On" : "Photo Only"}

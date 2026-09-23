@@ -125,7 +125,7 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-1.5 sm:gap-2 bg-zinc-950/85 border border-white/20 backdrop-blur-2xl py-1.5 px-2 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto">
+      <div className="flex items-center gap-1.5 sm:gap-2 bg-white/80 dark:bg-zinc-950/85 border border-black/10 dark:border-white/20 backdrop-blur-2xl py-1.5 px-2 rounded-full shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto transition-colors duration-300">
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name
@@ -139,17 +139,17 @@ export function NavBar({ items, className }: NavBarProps) {
               className={cn(
                 "relative cursor-pointer text-xs sm:text-sm font-medium px-3.5 sm:px-5 py-2 rounded-full transition-all duration-300 focus:outline-none flex items-center gap-2",
                 isActive
-                  ? "text-white font-bold"
-                  : "text-zinc-400 hover:text-zinc-100 hover:bg-white/5",
+                  ? "text-zinc-950 dark:text-white font-bold"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-black/5 dark:hover:bg-white/5",
               )}
             >
-              <Icon size={16} className={cn("transition-transform duration-300", isActive ? "scale-110 text-white" : "text-zinc-400")} />
+              <Icon size={16} className={cn("transition-transform duration-300", isActive ? "scale-110 text-zinc-950 dark:text-white" : "text-zinc-500 dark:text-zinc-400")} />
               <span className="hidden sm:inline font-sans">{item.name}</span>
 
               {isActive && (
                 <motion.div
                   layoutId="active-lamp-pill"
-                  className="absolute inset-0 w-full h-full bg-white/15 rounded-full border border-white/25 shadow-[0_0_16px_rgba(255,255,255,0.3)] -z-10"
+                  className="absolute inset-0 w-full h-full bg-black/10 dark:bg-white/15 rounded-full border border-black/15 dark:border-white/25 shadow-[0_0_16px_rgba(0,0,0,0.1)] dark:shadow-[0_0_16px_rgba(255,255,255,0.3)] -z-10"
                   initial={false}
                   transition={{
                     type: "spring",
@@ -158,8 +158,8 @@ export function NavBar({ items, className }: NavBarProps) {
                   }}
                 >
                   {/* Top Tubelight Glow Ray */}
-                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-white rounded-t-full shadow-[0_0_12px_rgba(255,255,255,0.9)]">
-                    <div className="absolute w-12 h-4 bg-white/30 rounded-full blur-md -top-1 -left-2" />
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-zinc-900 dark:bg-white rounded-t-full shadow-[0_0_12px_rgba(0,0,0,0.5)] dark:shadow-[0_0_12px_rgba(255,255,255,0.9)]">
+                    <div className="absolute w-12 h-4 bg-zinc-900/30 dark:bg-white/30 rounded-full blur-md -top-1 -left-2" />
                   </div>
                 </motion.div>
               )}

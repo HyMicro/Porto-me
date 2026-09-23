@@ -44,7 +44,7 @@ export const AnimatedHikeCard = React.forwardRef<
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        "group relative flex flex-col justify-between w-full min-h-[460px] sm:min-h-[480px] max-w-sm cursor-pointer rounded-2xl border border-white/10 bg-zinc-900/90 p-6 text-zinc-100 shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-white/30 hover:shadow-xl overflow-hidden",
+        "group relative flex flex-col justify-between w-full min-h-[460px] sm:min-h-[480px] max-w-sm cursor-pointer rounded-2xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-zinc-900/90 p-6 text-zinc-900 dark:text-zinc-100 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-black/25 dark:hover:border-white/30 hover:shadow-xl overflow-hidden",
         className
       )}
       aria-label={`Learn more about ${title}`}
@@ -52,8 +52,8 @@ export const AnimatedHikeCard = React.forwardRef<
       <div className="flex flex-col h-full justify-between space-y-3">
         {/* Card Header: Title and Arrow */}
         <div className="flex items-center justify-between pb-1 z-20">
-          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-white line-clamp-1">{title}</h2>
-          <ArrowRight className="h-5 w-5 text-zinc-400 transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:text-white shrink-0 ml-2" />
+          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-white line-clamp-1">{title}</h2>
+          <ArrowRight className="h-5 w-5 text-zinc-500 dark:text-zinc-400 transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:text-zinc-950 dark:group-hover:text-white shrink-0 ml-2" />
         </div>
 
         {/* Floating Poker Card Deck Stack Container */}
@@ -96,7 +96,7 @@ export const AnimatedHikeCard = React.forwardRef<
                   stiffness: 180,
                   damping: 24,
                 }}
-                className="absolute aspect-[4/3] w-[68%] sm:w-[72%] overflow-hidden rounded-xl border-2 border-zinc-950 shadow-[0_12px_32px_rgba(0,0,0,0.8)] pointer-events-none bg-zinc-950"
+                className="absolute aspect-[4/3] w-[68%] sm:w-[72%] overflow-hidden rounded-xl border-2 border-white dark:border-zinc-950 shadow-lg pointer-events-none bg-zinc-100 dark:bg-zinc-950"
               >
                 <img
                   src={src}
@@ -111,9 +111,9 @@ export const AnimatedHikeCard = React.forwardRef<
         {/* Bottom Metadata Block with Clear Separation */}
         <div className="space-y-3 pt-1 z-20">
           {/* Stats Badges */}
-          <div className="flex flex-wrap items-center gap-1.5 text-xs text-zinc-300">
+          <div className="flex flex-wrap items-center gap-1.5 text-xs text-zinc-700 dark:text-zinc-300">
             {stats.map((stat, index) => (
-              <div key={index} className="flex items-center space-x-1 bg-zinc-950/80 px-2.5 py-1 rounded-md border border-white/10 text-[11px] font-mono shadow-sm">
+              <div key={index} className="flex items-center space-x-1 bg-black/5 dark:bg-zinc-950/80 px-2.5 py-1 rounded-md border border-black/10 dark:border-white/10 text-[11px] font-mono shadow-sm">
                 {stat.icon}
                 <span>{stat.label}</span>
               </div>
@@ -121,7 +121,7 @@ export const AnimatedHikeCard = React.forwardRef<
           </div>
 
           {/* Description */}
-          <p className="text-xs sm:text-sm leading-relaxed text-zinc-400 font-sans line-clamp-2">
+          <p className="text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 font-sans line-clamp-2">
             {description}
           </p>
         </div>
